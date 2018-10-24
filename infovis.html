@@ -1,0 +1,549 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Data -->
+    <title>Information Visualization &middot; Jayanth M</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Helping a non-profit organization enable two-way conversation about data demonstrating the impact they have had over communities in Africa." />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/line-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/lightgallery.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link href="css/sweetalert.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,800%7CMontserrat:700%7COswald:300%7CRaleway:300,900)">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/responsive.css" rel="stylesheet" type="text/css">
+
+    <!--Analytics-->
+    <script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("687206710");
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-89663858-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+<body id="bigWrapper" data-spy="scroll" data-target=".navbar-default" data-offset="100">
+
+    <!--preloader-->
+    <div class="ip-header">
+        <div class="ip-logo">
+            <center><h3>Loading, hang on...</h3></center>
+        </div>
+        <div class="ip-loader" id="IDID">
+            <img src="img/preloader.svg" width="50" alt="">
+        </div>
+    </div>
+    <!--end preloader-->
+
+    <header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-spy="affix" data-offset-top="50">
+
+            <div class="container-fluid">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand Glow" href="index.html"><img src="img/logo.png" style="width:45px;resize:both" /></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="index.html#intro">Home</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="https://plus.google.com/+JayanthM"><i class="fa fa-google-plus last-child"></i></a></li>
+                        <li><a href="https://github.com/jaym93"><i class="fa fa-github last-child"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/jayanthm"><i class="fa fa-linkedin last-child"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+
+    <section id="hci-intro" style="background-image: url('img/backdrops/infovis_bg.jpg'); background-size:cover; background-attachment:fixed;">
+        <div class="black-overlay"></div>
+
+        <div class="container VContentWrapperTable">
+            <div class="row VContent">
+                <div class="col-md-12 text-center">
+                    <h3 class="WhiteText Glow">Information Visualization</h3>
+                    <h1 class="WhiteText Glow">WeSeeHope</h1>
+                    <div class="quick-jump MarginTop30">
+                        <a data-scroll class="quick-jump-btn info" href="#problem"><i class="fa fa-warning"></i></a>
+                        <a data-scroll class="quick-jump-btn info" href="#solution"><i class="fa fa-bullseye"></i></a>
+                        <a data-scroll class="quick-jump-btn info" href="#summary"><i class="fa fa-commenting"></i></a>
+                        <a data-scroll class="quick-jump-btn warning" href="#process"><i class="fa fa-gears"></i></a>
+                        <a data-scroll class="quick-jump-btn warning" href="#prototype"><i class="fa fa-th-large"></i></a>
+                        <!--<a data-scroll class="quick-jump-btn success" href="#insights"><i class="fa fa-sticky-note"></i></a>-->
+                        <a data-scroll class="quick-jump-btn success" href="#results"><i class="fa fa-trophy"></i></a>
+                        <a data-scroll class="quick-jump-btn danger" href="#links"><i class="fa fa-external-link"></i></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 hidden-xs proj-contact">
+                        <a href="https://www.linkedin.com/in/jayanthm" class="WhiteText" style="display:inline">
+                            <img src="img/people/jayanth.jpg" />
+                            Jayanth
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 hidden-xs proj-contact">
+                        <a href="https://www.linkedin.com/in/laurenwinston" class="WhiteText" style="display:inline">
+                            <img src="img/people/lauren.jpg" />
+                            Lauren
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 hidden-xs proj-contact">
+                        <a href="https://www.linkedin.com/in/mehmetordu" class="WhiteText" style="display:inline">
+                            <img src="img/people/mehmet.jpg" />
+                            Mehmet
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 hidden-xs proj-contact">
+                        <a href="https://www.linkedin.com/in/nanhongatlanta" class="WhiteText" style="display:inline">
+                            <img src="img/people/nan.jpg" />
+                            Nan
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="scrolldown" class="scrollhint">
+                <a data-scroll href="#problem"><span></span><span></span><span></span></a>
+            </div>
+        </div>
+        <a data-scroll class="scroll-top" href="#hci-intro" style="position:fixed; bottom:15px; right:15px;"><i class="fa fa-chevron-up"></i></a>
+    </section>
+    <div class="container">
+        <div class="row PaddingTop30">
+            <div data-scroll-reveal="enter left move 10px over 1s after 0.2s" class="col-md-7">
+                <div class="PositionRelative" id="problem">
+                    <div class="NumberTextIntro PositionRelative">
+                        <h3 class="TextNexttoNumber">Problem</h3>
+                    </div>
+                </div>
+                <p class="SimpleText">
+                    WeSeeHope is a UK based non-profit organization that aims to enable children isolated by poverty and create sustainable opportunities for people in Southern and Eastern Africa.
+                </p>
+                <p class="SimpleText">
+                    With the data they have collected across period of 3 years that includes 17 partners supporting over 200 groups and their activities, WeSeeHope wanted to provide reports to their partners about the effectiveness of each of the programs and where funds had been utilized.
+                </p>
+                <p class="SimpleText">
+                    The main problem was that there was no engaging way to show insights from their data. Moreover, some of this data was missing, duplicated, or otherwise invalid. If they could By representing this data in a visually manner, they could convey their impact better to potential partners instead of providing a textual report.
+                </p>
+                <hr />
+                <div class="PositionRelative" id="solution">
+                    <div class="NumberTextIntro PositionRelative">
+                        <h3 class="TextNexttoNumber">Solution</h3>
+                    </div>
+                </div>
+                <p class="SimpleText">
+                    After looking at the data, we decided most of the data was missing or non-standard, a risk of collecting data from multiple, free-form sources. Therefore, the first stage was to combine the data from several spreadsheets into one dataset, and then rank the attributes according to the order of importance for visualization.
+                </p>
+                <p class="SimpleText">
+                    With data cleanup done, we had to understand the story our clients wanted to convey, and what kind of insights their users wanted out of the data. This involved discussions over many calls to understand the data and its importance.
+                </p>
+                <p class="SimpleText">
+                    After a series of prototypes, we settled on a set of designs (because a single visualization could not convey all the data they wanted to show), and handed it over, with a brief video to show the class a demonstration of what we had done.
+                </p>
+            </div>
+            <div id="summary" data-scroll-reveal="enter right move 10px over 1s after 0.2s" class="col-md-5 PositionRelative LightGreyBackground">
+                <div class="ImageWrapper summaryImage">
+                    <img src="img/portfolio/infovis/wsh_logo.png" class="img-responsive ParallaxImageBorder" alt="WeSeeHope UK logo">
+                </div>
+                <div class="CaptionFlyingBox">
+                    <h5 class="text-center">Data provider and client, WeSeeHope UK</h5>
+                </div>
+                <div class="uncont">
+                    <div class="info-content">
+                        <p>
+                            <span class="detail-container">
+                                <span class="detail-label">Type</span>
+                                <span class="detail-value">Class, Group Project</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Role</span>
+                                <span class="detail-value">UI Design, Data Analysis and Cleanup, JavaScript development, Video Creation</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">5 months (Aug 2016 - Dec 2016)</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Tools</span>
+                                <span class="detail-value">D3.js, HTML/CSS, jQuery, SVG.js, HighCharts, Tableau, Adobe Photoshop, Camtasia Recorder</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Objectives</span>
+                                <span class="detail-value">Dealing with real-world data, Information Visualization, Storytelling, Working with clients</span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="PositionRelative" id="process">
+            <div class="NumberTextIntro PositionRelative">
+                <h3 class="TextNexttoNumber">Process</h3>
+            </div>
+        </div>
+        <div id="tlc" class="timeline-container PositionRelative col-md-12">
+            <ul class="timeline">
+                <li class="timeline-inverted" data-scroll-reveal="enter right move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">1</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Data</h3>
+                                <div class="smallHeader">The data that was given to us to analyze and visualize</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <div class="positionRelative lgimg" data-src="img/portfolio/infovis/rawdata.jpg" data-sub-html="<h3>Raw Data</h3><p>A sample of the data we were given - as you can see, many fields were not reported, currencies were not normalized, information to visualize were spread in 4 different spreadsheets, there was no standard for reporting activities, so on.</p>">
+                                        <img alt="Raw data" class="BlogImage img-responsive" src="img/portfolio/infovis/rawdata.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">A sample of the data we were given</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        We were given was a set of four spreadsheets with about 3 years of data, much of its data missing (possibly unreported). Despite several attempts, there did not seem to be an easy way to get the data. Moreover, some reported activities were reported differently (Example: "poultry", "chicken farming", "chicken rearing", "poultry keeping" were all in the activities field and they all meant the same)
+                                    </p>
+                                    <p class="text-justify">
+                                        There were also other issues with data such as non-normalized finances reported in local currencies, and fields that could be simplified for visualization (for example, "interest paid" was more appropriate than "principal borrowed" and "interest rate" and "loan period"). 
+                                    </p>
+                                    </div>
+                                    <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                                </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter right move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">2</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Data Cleanup</h3>
+                                <div class="smallHeader">We consolidated the data, prioritized it, normalized and calculated certain fields that was important, and converted the whole thing to a JSON file.</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <div class="positionRelative lgimg" data-src="img/portfolio/infovis/cleaned.jpg" data-sub-html="<h3>Cleaned Data</h3><p>The four spreadsheets were consolidated, color-coded based on keep/remove, normalized and so on to get it ready for visualization.</p>">
+                                        <img alt="Raw data" class="BlogImage img-responsive" src="img/portfolio/infovis/cleaned.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">Color-coded data ready for cleanup</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        After several calls with WeSeeHope, we understood the meaning of certain fields, how data was organized, what data was important to them, and other facts about the data.
+                                    </p>
+                                    <p class="text-justify">
+                                        Then, we collaboratively identified the fields that were important, and the ones that were no longer necessary. The latter were removed for the sake of clarity as well as to speed up the rendering of the visualization.
+                                    </p>
+                                    <p class="text-justify">
+                                        Python scripts helped us a lot in data cleanup. Some of the simple scripts I wrote listed and mapped duplicate values, converted currencies and so on.
+                                    </p>
+                                    <p class="text-justify">
+                                        Finally, for the sake of visualization, we decided to convert our (remaining) processed data into JSON for easy access by d3 and other JavaScript visualization frameworks.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter right move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">3</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Ideation</h3>
+                                <div class="smallHeader">Sketching and seeking feedback on prototype visualizations</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <div class="positionRelative lgimg" data-src="img/portfolio/infovis/sketching.jpg" data-sub-html="<h3>Rough sketches</h3><p>The first ideas are best gotten through pen and paper, allowing for quick prototypes and changes without committing to anything.</p>">
+                                        <img alt="Idea sketches" class="BlogImage img-responsive" src="img/portfolio/infovis/sketching.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">Sketching out ideas</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        The first ideas are best gotten through pen and paper, allowing for quick prototypes and changes without committing to anything.
+                                    </p>
+                                    <p class="text-justify">
+                                        After some preliminary ideas, we also used Illustrator, Photoshop, Tableau and other tools to play with the data to get more ideas about what visualizations make most sense.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter right move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">4</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Feedback</h3>
+                                <div class="smallHeader">A brief poster presentation to get feedback and evaluate the effectiveness of visualizations</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <div class="positionRelative lgimg" data-src="img/portfolio/infovis/poster.jpg" data-sub-html="<h3>Poster at presentation</h3><p>We presented the poster to both the class and our clients, ranking the effectiveness, understandability, and visual appeal to our audience</p>">
+                                        <img alt="Poster presentation" class="BlogImage img-responsive" src="img/portfolio/infovis/poster.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">Poster presentation</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        As for any design, feedback is critical to refine and iterate designs from the early stages. Therefore we made a poster to present both to the class and our clients, ranking the effectiveness, understandability, and visual appeal to our audience.
+                                    </p>
+                                    <p class="text-justify">
+                                        For the class, since they were not the primary consumers of the data, we had to outline the problem and goals of the visualization. This gave us a unique perspective of visitors to WeSeeHope website, and how much of a narrative would be needed for the visualizations to make sense.
+                                    </p>
+                                    <p class="text-justify">
+                                        We got good critique from our clients as well, like the logical groupings and prioritizing straightforwardness of interaction than making the interface visually sophisticated. Below are the slides we presented.
+                                    </p>
+                                    <div class="frameWrapper" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                                        <iframe src="https://docs.google.com/presentation/d/10nDG1cNdIgY3DPpVHBFGZIq5L-ZfFmIC5FxxmiyS0DM/embed?start=true&loop=true&delayms=3000" frameborder="0" width="860" height="469" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                    </div>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter right move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">5</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Final result</h3>
+                                <div class="smallHeader">We designed a basic webpage with reusable visualizations WeSeeHope could use where they needed to</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <div class="positionRelative col-md-3 col-sm-6 lgimg" data-src="img/portfolio/infovis/main.jpg" data-sub-html="<h3>Exploratory Analysis</h3><p>This visualization is similar to Tableau, where one can chose their X, Y and Size axes to visualize data. This was implemented so WeSeeHope and the leaders of the Village Investors Program could gain insights we missed from the data, now or in the future. To enable easy comparison between two groups, we also added a flower graph on the side that compared all known attributes from two selected groups from the exploratory view.</p>">
+                                        <img alt="Exploratory visualization" class="BlogImage img-responsive" src="img/portfolio/infovis/main.jpg">
+                                    </div>
+                                    <div class="positionRelative col-md-3 col-sm-6 lgimg" data-src="img/portfolio/infovis/groups.jpg" data-sub-html="<h3>Evolution of groups over time</h3><p>This view shows, with the help of an interactive slider, which groups evolved in what countries. Though we wished to show the increase in size of the groups at that point of time, we did not have that information - only the current headcount. Also, a chloropleth map with the countries did not make sense to our clients, because the exact location of the groups were not known.</p>">
+                                        <img alt="Group evolution" class="BlogImage img-responsive" src="img/portfolio/infovis/groups.jpg">
+                                    </div>
+                                    <div class="positionRelative col-md-3 col-sm-6 lgimg" data-src="img/portfolio/infovis/sankey.jpg" data-sub-html="<h3>Distribution of activities</h3><p>This view was the most sought after by the clients, who wanted to understand what activities were most profitable, before analyzing the success factors in order to help expand it to other groups. Hovering over any country, partner or activity highlights all the involved entities, along with the number of groups involved in that particular activity.</p>">
+                                        <img alt="Activity mapping" class="BlogImage img-responsive" src="img/portfolio/infovis/sankey.jpg">
+                                    </div>
+                                    <div class="positionRelative col-md-3 col-sm-6 lgimg" data-src="img/portfolio/infovis/people.jpg" data-sub-html="<h3>Distribution of people</h3><p>A simple column chart that shows the number of members and number of dependent vulnerable population under each partner.  Entiities can be turned on or off by clicking on the chart legend, and the whole chart can switch between the averaged view and the totals view, in order to normalize for the differing sizes of the groups.</p>">
+                                        <img alt="People statistics" class="BlogImage img-responsive" src="img/portfolio/infovis/people.jpg">
+                                    </div>
+                                    <div class="positionRelative col-md-3 col-sm-6 lgimg" data-src="img/portfolio/infovis/finance.jpg" data-sub-html="<h3>Distribution of finances</h3><p>Similar to the distribution of people, this column chart shows where money is spent or gained. Entiities can be turned on or off by clicking on the chart legend, and the whole chart can switch between the averaged view and the totals view, in order to normalize for the differing sizes of the groups.</p>">
+                                        <img alt="Financial statistics" class="BlogImage img-responsive" src="img/portfolio/infovis/finance.jpg">
+                                    </div>
+                                    <p class="text-justify">
+                                        The final visualization consisted of five different visualizations, each of which could be taken independently and reused by WeSeeHope.
+                                    </p>
+                                    <p class="text-justify">
+                                        <strong>Exploratory Analysis: </strong> This visualization is similar to Tableau, where one can chose their X, Y and Size axes to visualize data. This was implemented so WeSeeHope and the leaders of the Village Investors Program could gain insights we missed from the data, now or in the future. To enable easy comparison between two groups, we also added a flower graph on the side that compared all known attributes from two selected groups from the exploratory view.
+                                    <p class="text-justify">
+                                        <strong>Evolution of groups over time: </strong> This view shows, with the help of an interactive slider, which groups evolved in what countries. Though we wished to show the increase in size of the groups at that point of time, we did not have that information - only the current headcount. Also, a Chloropleth map with the countries did not make sense to our clients, because the exact location of the groups were not known.
+                                    </p>
+                                    <p class="text-justify">
+                                        <strong>Distribution of activities: </strong>This view was the most sought after by the clients, who wanted to understand what activities were most profitable, before analyzing the success factors in order to help expand it to other groups. Hovering over any country, partner or activity highlights all the involved entities, along with the number of groups involved in that particular activity.
+                                    </p>
+                                    <p class="text-justify">
+                                        <strong>Distribution of people: </strong>A simple column chart that shows the number of members and number of dependent vulnerable population under each partner.  Entiities can be turned on or off by clicking on the chart legend, and the whole chart can switch between the averaged view and the totals view, in order to normalize for the differing sizes of the groups.
+                                    </p>
+                                    <p class="text-justify">
+                                        <strong>Distribution of finances: </strong>Similar to the distribution of people, this column chart shows where money is spent or gained. Entiities can be turned on or off by clicking on the chart legend, and the whole chart can switch between the averaged view and the totals view, in order to normalize for the differing sizes of the groups.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr />
+        <div id="results" data-scroll-reveal="enter right move 10px over 1s after 0.2s" class="col-md-12">
+            <div class="NumberTextIntro PositionRelative">
+                <h3 class="TextNexttoNumber">Results</h3>
+            </div>
+            <p class="SimpleText">
+                The visualizations we developed were far more effective than the static, Excel based visualizations WeSeeHope were using prior to the project. Our end product served as a means for them to tell their story by interactive means with the limited data they had.
+            </p>
+            <p class="SimpleText">
+                WeSeeHope and Axis Group (whom WeSeeHope had partnered with to get the project implemented) were extremely pleased with the work and expressed delight at the end result. The visualizations were succinct and tailored to the level of their target audience.
+            </p>
+        </div>
+        <hr />
+        <div id="prototype" data-scroll-reveal="enter right move 10px over 1s after 0.2s" class="col-md-12">
+            <div class="NumberTextIntro PositionRelative">
+                <h3 class="TextNexttoNumber">Prototype</h3>
+            </div>
+            <p class="SimpleText">
+                Click below to see the end product (best viewed on 1080p) screens.
+            </p>
+            <a href="http://www.jayanthm.website/vis/" target="_blank" class="btn btn-black MarginBottom15">View Visualization</a>
+        </div>
+        <hr />
+        <div id="links" class="col-md-12 PaddingBottom30" data-scroll-reveal="enter right move 10px over 1s after 0.2s">
+            <div class="NumberTextIntro PositionRelative col-md-6" style="padding-left:0;">
+                <h3 class="TextNexttoNumber">Links</h3>
+            </div>
+            <div class="col-md-6 PaddingTop20">
+                <a href="http://www.jayanthm.website/vis/" target="_blank" class="btn btn-black">View Visualization</a>
+                <a href="https://github.com/jaym93/weseehope" target="_blank" class="btn btn-black MarginTop30">GitHub</a>
+                <a href="http://weseehope.org.uk" target="_blank" class="btn btn-black MarginTop30">WeSeeHope Official Website</a>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <footer id="footer" class="dark">
+
+        <div class="topLine">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 centered-sm">
+                        <h3 class="WhiteText Glow">&lt;Portfolio/&gt;</h3>
+                    </div>
+                    <div class="col-sm-4 text-right centered-sm">
+                        <h5 class="WhiteText">
+                            Address
+                        </h5>
+                        <p class="SoftGreyText">
+                            Atlanta<br>
+                            Georgia<br>
+                            United States<br>
+                            <b>Phone:</b> +1 (404) 429 6854<br>
+                            <b>Email:</b> jaym93@gmail.com
+                        </p>
+                    </div>
+                    <div class="col-sm-2 text-right centered-sm">
+                        <h5 class="WhiteText">
+                            Back to...
+                        </h5>
+                        <ul class="list-unstyled SoftGreyText">
+                            <li><a href="index.html#about" target="_blank">About</a></li>
+                            <li><a href="index.html#services" target="_blank">Passion</a></li>
+                            <li><a href="index.html#portfolio" target="_blank">Showcase</a></li>
+                            <li><a href="index.html#contact" target="_blank">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottomLine">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 centered-sm SoftGreyText">
+                        <p class="copyright no-margin-bottom"><h5> Jayanth M </h5> &copy; 2016 All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-right centered-sm SoftGreyText">
+                        <a href="https://plus.google.com/+JayanthM" target="_blank" class="WhiteText">Google Plus</a> / <a class="WhiteText" href="https://github.com/jaym93" target="_blank">GitHub</a> / <a class="WhiteText" target="_blank" href="https://www.linkedin.com/in/jayanthm">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/scripts.min.js"></script>
+    <script src="js/lightgallery.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script type="text/javascript">
+        $('#tlc').lightGallery({
+            thumbnail: true,
+            selector: '.lgimg'
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.contog').slideToggle();
+            $(".toggler").on("click", function () {
+                var $ele = $(this);
+                $ele.siblings('.contog').slideToggle();
+                $ele.html() == "<i class=\"fa fa-angle-double-down\"></i>Read more" ? $ele.html("<i class=\"fa fa-angle-double-up\"></i>Show less") :  $ele.html("<i class=\"fa fa-angle-double-down\"></i>Read more");
+            });
+        });
+    </script>
+    
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">IE SUCKS!</h1>
+            <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="img/browsers/chrome.png" alt="">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="img/browsers/firefox.png" alt="">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="img/browsers/opera.png" alt="">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="img/browsers/safari.png" alt="">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="img/browsers/ie.png" alt="">
+                        <div>IE (New)</div>
+                    </a>
+                </li>
+            </ul>
+            <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+        </div>
+    <![endif]-->
+
+</body>
+</html>

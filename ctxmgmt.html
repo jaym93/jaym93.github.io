@@ -1,0 +1,560 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Data -->
+    <title>Context Management System &middot; Jayanth M</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="A Ubiquitous Computing device that gathers the What, Where, When, Who and How of use, and a service that utilizes the data in creative ways." />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/line-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/lightgallery.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link href="css/sweetalert.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,800%7CMontserrat:700%7COswald:300%7CRaleway:300,900)">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/responsive.css" rel="stylesheet" type="text/css">
+
+    <!--Analytics-->
+    <script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("687206710");
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-89663858-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+<body id="bigWrapper" data-spy="scroll" data-target=".navbar-default" data-offset="100">
+
+    <!--preloader-->
+    <div class="ip-header">
+        <div class="ip-logo">
+            <center><h3>Loading, hang on...</h3></center>
+        </div>
+        <div class="ip-loader" id="IDID">
+            <img src="img/preloader.svg" width="50" alt="">
+        </div>
+    </div>
+    <!--end preloader-->
+
+    <header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-spy="affix" data-offset-top="50">
+
+            <div class="container-fluid">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand Glow" href="index.html"><img src="img/logo.png" style="width:45px;resize:both" /></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="index.html#intro">Home</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="https://plus.google.com/+JayanthM"><i class="fa fa-google-plus last-child"></i></a></li>
+                        <li><a href="https://github.com/jaym93"><i class="fa fa-github last-child"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/jayanthm"><i class="fa fa-linkedin last-child"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+
+    <section id="hci-intro" style="background-image: url('img/backdrops/context_bg.jpg'); background-size:cover; background-attachment:fixed;">
+        <div class="black-overlay"></div>
+
+        <div class="container VContentWrapperTable">
+            <div class="row VContent">
+                <div class="col-md-12 text-center">
+                    <h3 class="WhiteText Glow">Ubiquitous Computing</h3>
+                    <h1 class="WhiteText Glow">Context Management System</h1>
+                    <div class="quick-jump MarginTop30">
+                        <a data-scroll class="quick-jump-btn info" href="#problem"><i class="fa fa-warning"></i></a>
+                        <a data-scroll class="quick-jump-btn info" href="#solution"><i class="fa fa-bullseye"></i></a>
+                        <a data-scroll class="quick-jump-btn info" href="#summary"><i class="fa fa-commenting"></i></a>
+                        <a data-scroll class="quick-jump-btn warning" href="#process"><i class="fa fa-gears"></i></a>
+                        <!--<a data-scroll class="quick-jump-btn warning" href="#prototype"><i class="fa fa-th-large"></i></a>
+                        <a data-scroll class="quick-jump-btn success" href="#insights"><i class="fa fa-sticky-note"></i></a>-->
+                        <a data-scroll class="quick-jump-btn success" href="#results"><i class="fa fa-trophy"></i></a>
+                        <a data-scroll class="quick-jump-btn danger" href="#links"><i class="fa fa-external-link"></i></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 hidden-xs proj-contact">
+                        <a href="https://www.linkedin.com/in/jayanthm" class="WhiteText" style="display:inline">
+                            <img src="img/people/jayanth.jpg" />
+                            Jayanth
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 hidden-xs proj-contact">
+                        <a href="https://www.linkedin.com/in/anushkmittal/" class="WhiteText" style="display:inline">
+                            <img src="img/people/anushk.jpg" />
+                            Anushk
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 hidden-xs proj-contact">
+                        <a href="https://www.linkedin.com/in/ruturajeks/" class="WhiteText" style="display:inline">
+                            <img src="img/people/ruturaj.jpg" />
+                            Ruturaj
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 hidden-xs proj-contact">
+                        <a href="https://www.linkedin.com/in/samarth-robo/" class="WhiteText" style="display:inline">
+                            <img src="img/people/samarth.jpg" />
+                            Samarth
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="scrolldown" class="scrollhint">
+                <a data-scroll href="#problem"><span></span><span></span><span></span></a>
+            </div>
+        </div>
+        <a data-scroll class="scroll-top" href="#hci-intro" style="position:fixed; bottom:15px; right:15px;"><i class="fa fa-chevron-up"></i></a>
+    </section>
+    <div class="container">
+        <div class="row PaddingTop30">
+            <div data-scroll-reveal="enter left move 10px over 1s after 0.2s" class="col-md-7">
+                <div class="PositionRelative" id="problem">
+                    <div class="NumberTextIntro PositionRelative">
+                        <h3 class="TextNexttoNumber">Problem</h3>
+                    </div>
+                </div>
+                <p class="SimpleText">
+                    One of the major challenges of ubiquitous computing is the context - What is being used? Who is using it? Where is it being used? When was it last used? How is it being used? 
+                </p>
+                <p class="SimpleText">
+                    Getting answers to these questions will enable innovative applications and formidable use cases for this data. Everything from finding your keys to locating an unused workspace in a shared environment relies on this kind of data, adding tracking and inventorying capabilities that do not exist yet.
+                </p>
+                <hr />
+                <div class="PositionRelative" id="solution">
+                    <div class="NumberTextIntro PositionRelative">
+                        <h3 class="TextNexttoNumber">Solution</h3>
+                    </div>
+                </div>
+                <p class="SimpleText">
+                    The <strong>What</strong> and the <strong>When</strong> are relatively easier problems to solve - former being a reference to self, and the latter being a timestamp pulled from the Internet. However, the <strong>Who</strong> is a relatively harder problem - with NFC or RFID that are more power-hungry and size-heavy protocols. The <strong>Where</strong> is an even harder problem - reliable indoor localization does not adapt well and is time consuming to configure. The <strong>How</strong>, of course, is up to the device, and will be an optional metadata field that a smart device will fill in.
+                </p>
+                <p class="SimpleText">
+                    We want to build such a system, keeping track of all these fields for different objects. We want to create an embeddable system that can provide context awareness to the device it is attached to, that stores the history of whenever an object is moved, and logs this data into a data store, opening it up for use by other applications in multi-modal interfaces.
+                </p>
+            </div>
+            <div id="summary" data-scroll-reveal="enter right move 10px over 1s after 0.2s" class="col-md-5 PositionRelative LightGreyBackground">
+                <div class="ImageWrapper summaryImage">
+                    <img src="img/portfolio/ctxmgmt/rfid.png" class="img-responsive ParallaxImageBorder" alt="An RFID reader">
+                </div>
+                <div class="CaptionFlyingBox">
+                    <h5 class="text-center">An RFID reader from Datalogic, similar in shape to what we hope to implement</h5>
+                </div>
+                <div class="uncont">
+                    <div class="info-content">
+                        <p>
+                            <span class="detail-container">
+                                <span class="detail-label">Type</span>
+                                <span class="detail-value">Class, Team project</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Role</span>
+                                <span class="detail-value">Architecture, Component Sourcing, Hardware Design, Use Case Demonstration</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">4 months (Jan 2018 - Apr 2018)</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Tools</span>
+                                <span class="detail-value">Arduino, Raspberry Pi, RF Protocols, Audio Interfacing, Conversational UIs, Databases</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Objectives</span>
+                                <span class="detail-value">System and Solution Architecture, Context Gathering, Ubiquitous Computing, Signal Processing, Indoor Localization, Power Optimization</span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="PositionRelative" id="process">
+            <div class="NumberTextIntro PositionRelative">
+                <h3 class="TextNexttoNumber">Process</h3>
+            </div>
+        </div>
+        <div id="tlc" class="timeline-container PositionRelative col-md-12">
+            <ul class="timeline">
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">1</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Background</h3>
+                                <div class="smallHeader">What got us interested in this problem?</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <div class="miniImageWrapper">
+                                        <img alt="components of context" class="BlogImage mini60 img-responsive" src="img/portfolio/ctxmgmt/w5.png">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">Components of Context</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        The research publication <a target="_blank" href="https://www.cc.gatech.edu/fce/pubs/tochi-millenium.pdf">Charting Past, Present, and Future Research in Ubiquitous Computing</a> by <a target="_blank" href="http://ubicomp.cc.gatech.edu/gregory-d-abowd/">Gregory Abowd</a> and <a target="_blank" href="https://www.cc.gatech.edu/people/elizabeth-mynatt">Elizabeth Maynatt</a> talked about the importance, representation and ubiquity of context, and coupling it with awareness, natural interaction and automated capture. Reading this paper got us deeply interested in creating a system that gathers this kind of context, because often, that is the first step to making context-aware solutions.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">2</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Scope</h3>
+                                <div class="smallHeader">What are our constraints in solving this problem?</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        For our design to be practical as a ubiquitous system, we had to work around some constraints.
+                                        <ul>
+                                            <li>The system has to be small enough to fit on/in other appliances and devices</li>
+                                            <li>The sampling frequency should not be so high that the system draws too much power, but also not low enough that it contains stale information about the current state</li>
+                                            <li>The components used to build the system should consume as little power as possible</li>
+                                            <li>It should have an interface to obtain energy and communicate with other devices</li>
+                                            <li>It should balance the accuracy of indoor localization against size and power consumption - research to be done about the exact accuracy</li>
+                                            <li>Should not be constrained by technology available now, but should have modularity to support future technology (like Bluetooth Grid) for each of these components</li>
+                                        </ul>
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">3</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Design Inspiration</h3>
+                                <div class="smallHeader">How do we envision form?</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <div class="ImageWrapper">
+                                        <img alt="components of context" class="BlogImage img-responsive" src="img/portfolio/ctxmgmt/designinsp.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">Objects for design inspiration</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        My first form was a small cube with electrical contacts on one side, attaching magnetically to whatever device it was talking to. After playing with some mockups, I discovered that the form is not stable enough, and would be easy to lose. I gathered a few other objects around my desk to see if any of them would serve as a good starting point for design. These included a Mini Wireless Router, a Screen Fluid spray bottle, a bike light with rubber loops at the back, a remote control and so on.
+                                    </p>
+                                    <div class="ImageWrapper">
+                                        <img alt="fitbit ultra" class="BlogImage mini40 img-responsive" src="img/portfolio/ctxmgmt/fitbit.png">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">fitbit Ultra</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        I had once found this discarded <a href="https://www.edn.com/design/medical/4395806/High-res-pressure-sensor-brings-stair-track-capability-to-Fitbit-Ultra">Fitbit Ultra</a> and thought it would be an interesting design to explore. This second-generation device was created after complaints from users about losing their fitbits, so it was supposed to be a tighter hinge. It also contained several sensors inside, along with a rechargeable battery and a radio that talked to the base station using the ANT protocol.
+                                    </p>
+                                    <p class="text-justify">
+                                        Therefore, while creating the recommendation for the final form, we would keep this as the reference design, with the wireless radio, battery and accelerometer-based wakeup mechanism while redesigning the contacts for power and data, as well as interaction mechanisms to have it as close to zero-workflow as possible.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">4</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Alternatives</h3>
+                                <div class="smallHeader">What alternatives did we consider to accomplish the gathering of each component?</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        The <strong>What</strong>, a self-referential ID:
+                                        <ul>
+                                            <li>String of arbitrary character length stored on the device to be sent from (more human readable)</li>
+                                            <li>A binary ID field, possibly 16 bits, that is mapped on the server to the names, for an overall possibility of 65,536 possible addresses (less data transfer overhead, fewer bits sent)</li>
+                                        </ul>
+                                    </p>
+                                    <p class="text-justify">
+                                        The <strong>When</strong>, a timestamp obtained from the Internet or maintained locally:
+                                        <ul>
+                                            <li>The timestamp in UNIX format, example: <em>1970-01-01T00:00:00Z</em> (more human readable)</li>
+                                            <li>Epoch time, that is, number of seconds since midnight of January 1 1970. <em>As of writing this webpage, time is 1517780033.</em> (more efficient for data transfer) </li>
+                                        </ul>
+                                    </p>
+                                    <div class="miniImageWrapper">
+                                        <img alt="MIT Cricket indoor positioning system" class="BlogImage mini60 img-responsive" src="img/portfolio/ctxmgmt/cricket.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">MIT Cricket Indoor Positioning System</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        The <strong>Where</strong>, a localized coordinate with respect to some reference point:
+                                        <ul>
+                                            <li>Three unidirectional radio transmitters placed at 120&deg; angles to calculate polar coordinates from the radio cluster (requires custom design, outside of experience for me and my team mates, but does not need to be trained at each new deployment)</li>
+                                            <li><a target="_blank" href="http://cricket.csail.mit.edu/">MIT's 'The Cricket' indoor localization system</a>, (a legacy system, hard to source and build, unknown power constraints, legacy interfaces)</li>
+                                            <li>Camera based localization, for example, with AWS Rekognition models (requires training at each new deployment, but relatively easy to use with no custom design)</li>
+                                            <li>Bluetooth LE Beacons, the industry standard of doing indoor localization in modern times (well documented and proven, but not the greatest accuracy)</li>
+                                        </ul>
+                                    </p>
+                                    <p class="text-justify">
+                                        The <strong>Who</strong>, the person or entity making use of this object:
+                                        <ul>
+                                            <li>NFC (easily available, but short range, bulky and power intensive)</li>
+                                            <li>RFID (easily available, but requires antennas and special physical properties, strength is affected by material)</li>
+                                            <li><a target="_blank" href="http://ieeexplore.ieee.org/document/7842831/?reload=true">Bioacoustics</a>, inspired by a recent Ubicomp research paper from Cheng Zhang, Thad Starner and others: using the human body as a communication channel to propagate information, modulating the frequency so it is unique to each individual.</li>
+                                        </ul>
+                                    </p>
+                                    <p class="text-justify">
+                                        The <strong>How</strong>, metadata about usage:
+                                        <ul>
+                                            <li>Collected by our device (power intensive, may be unnecessary depending on object)</li>
+                                            <li>Wired communication, sent by device (sent on per-need basis, advantages of also having other means to supply power for the transmission of extra information)</li>
+                                            <li>Wireless communication with device (power intensive, in most cases, unnecessary)</li>
+                                        </ul>
+                                    </p>
+                                    <p class="text-justify">
+                                        The <strong>Why</strong>, to infer intent:
+                                        <ul>
+                                            <li>Our system does not worry about this, because it is very compute intensive and is ideal to be done at the server with machine learning. Not a task for a power-constrained embedded system.</li>
+                                        </ul>
+                                    </p>
+                                    <p class="text-justify">
+                                        When to <strong>Wake up</strong>:
+                                        <ul>
+                                            <li>Always on (unnecessary - only last known position is needed)</li>
+                                            <li>Wake up by Bioacoustics (if the user of the system is not Bioacoustics enabled, the state may be lost and objects no longer tracked)</li>
+                                            <li>Wake up by accelerometer (possibly a better solution than the above two, wakes up when an object is moved, even by someone not recognized by the system)</li>
+                                        </ul>
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">5</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Implementation</h3>
+                                <div class="smallHeader">Building the device?</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        Details will be added once implementation starts.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">6</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Applications</h3>
+                                <div class="smallHeader">What do we use contextual information for?</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        We plan to implement a voice interface and a Slack based bot as example applications that can answer simple questions like "Where is my ****" or "Who used this **** last?"
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr />
+        <div id="results" data-scroll-reveal="enter right move 10px over 1s after 0.2s" class="col-md-12">
+            <div class="NumberTextIntro PositionRelative">
+                <h3 class="TextNexttoNumber">Anticipated Results</h3>
+            </div>
+            <p class="SimpleText">
+                Context-sensing, in architecture terminology, is a "cross-cutting" concern within and across most, if not all, IoT applications. Hence the solution can be designed as a generalized component that will serve all such applications, perhaps with some configuration capability. 
+            </p>
+            <p class="SimpleText">
+                For example, a VR program could use this data to place things in a virtual world as it is in the real world. A store can keep track of who picked what, similar to <a target="_blank" href="https://www.amazon.com/b?node=16008589011">Amazon Go</a>. We will add more details as we progress through the project.
+            </p>
+        </div>
+        <hr />
+        <div id="links" class="col-md-12 PaddingBottom30" data-scroll-reveal="enter right move 10px over 1s after 0.2s">
+            <div class="NumberTextIntro PositionRelative col-md-6" style="padding-left:0;">
+                <h3 class="TextNexttoNumber">Links</h3>
+            </div>
+            <div class="col-md-6 PaddingTop30">
+                No links to show.
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <footer id="footer" class="dark">
+
+        <div class="topLine">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 centered-sm">
+                        <h3 class="WhiteText Glow">&lt;Portfolio/&gt;</h3>
+                    </div>
+                    <div class="col-sm-4 text-right centered-sm">
+                        <h5 class="WhiteText">
+                            Address
+                        </h5>
+                        <p class="SoftGreyText">
+                            Atlanta<br>
+                            Georgia<br>
+                            United States<br>
+                            <b>Phone:</b> +1 (404) 429 6854<br>
+                            <b>Email:</b> jaym93@gmail.com
+                        </p>
+                    </div>
+                    <div class="col-sm-2 text-right centered-sm">
+                        <h5 class="WhiteText">
+                            Back to...
+                        </h5>
+                        <ul class="list-unstyled SoftGreyText">
+                            <li><a href="index.html#about" target="_blank">About</a></li>
+                            <li><a href="index.html#services" target="_blank">Passion</a></li>
+                            <li><a href="index.html#portfolio" target="_blank">Showcase</a></li>
+                            <li><a href="index.html#contact" target="_blank">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottomLine">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 centered-sm SoftGreyText">
+                        <p class="copyright no-margin-bottom"><h5> Jayanth M </h5> &copy; 2018 All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-right centered-sm SoftGreyText">
+                        <a href="https://plus.google.com/+JayanthM" target="_blank" class="WhiteText">Google Plus</a> / <a class="WhiteText" href="https://github.com/jaym93" target="_blank">GitHub</a> / <a class="WhiteText" target="_blank" href="https://www.linkedin.com/in/jayanthm">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/scripts.min.js"></script>
+    <script src="js/lightgallery.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script type="text/javascript">
+        $('#tlc').lightGallery({
+            thumbnail: true,
+            selector: '.lgimg'
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.contog').slideToggle();
+            $(".toggler").on("click", function () {
+                var $ele = $(this);
+                $ele.siblings('.contog').slideToggle();
+                $ele.html() == "<i class=\"fa fa-angle-double-down\"></i>Read more" ? $ele.html("<i class=\"fa fa-angle-double-up\"></i>Show less") :  $ele.html("<i class=\"fa fa-angle-double-down\"></i>Read more");
+            });
+        });
+    </script>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">IE SUCKS!</h1>
+            <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="img/browsers/chrome.png" alt="">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="img/browsers/firefox.png" alt="">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="img/browsers/opera.png" alt="">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="img/browsers/safari.png" alt="">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="img/browsers/ie.png" alt="">
+                        <div>IE (New)</div>
+                    </a>
+                </li>
+            </ul>
+            <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+        </div>
+    <![endif]-->
+
+</body>
+</html>

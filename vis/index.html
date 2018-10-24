@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Information Visualization Project, CS7450">
+    <meta name="keywords" content="Visualization, Georgia Tech, CS7450">
+    <meta name="author" content="Jayanth Mohana Krishna, Lauren Winston, Nan Hong, Mehmet Ordu">
+    <title>WeSeeHope &middot; Statistics Visualization</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+    <link href="assets/css/toolkit-inverse.css" rel="stylesheet">
+    <link href="assets/css/jquery-ui.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/ion.rangeSlider.css" rel="stylesheet" />
+    <link href="assets/css/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
+    <script src="data.js"></script>
+</head>
+
+<body class="ts">
+    <nav class="ci ou g">
+        <div class="ft ui">
+            <div class="oj">
+                <button type="button" class="om collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="ct">Toggle navigation</span>
+                    <span class="on"></span>
+                    <span class="on"></span>
+                    <span class="on"></span>
+                </button>
+                <a class="ol tu" href="index.html">
+                    <img src="assets/img/WSH-in-circle-300x285.png" style="height:30px;display:inline;" />
+                    WeSeeHope
+                </a>
+            </div>
+            <div id="navbar" class="ok collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#sec-overview">Overview</a>
+                    </li>
+                    <li>
+                        <a href="#sec-group">Groups</a>
+                    </li>
+                    <li>
+                        <a href="#sec-comparision">People</a>
+                    </li>
+                    <li>
+                        <a href="#sec-statistics">Finance</a>
+                    </li>
+                    <li>
+                        <a href="#sec-activities">Activities</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="ft aps">
+        <div class="apa" id="sec-overview">
+            <div class="apb">
+                <h6 class="apd">Dashboard</h6>
+                <h2 class="apc">Overview</h2>
+            </div>
+            <div class="ob ape">
+                <iframe src="http://www.mehmetderya.com/infovis" style="width:1450px; height:700px; overflow:hidden;"></iframe>
+                
+            </div>
+            <!--<div id="vis-overview" style="min-width: 310px; height: 600px; margin: 20px auto"></div>-->
+        </div>
+
+        <hr />
+
+        <div class="apa" id="sec-group">
+            <div class="apb">
+                <h6 class="apd">Visualization</h6>
+                <h2 class="apc">Groups</h2>
+            </div>
+            <!--<input type="range" id="slid" min="1344139200" max="1443499200" value="1443499200" style="position:relative; width:30%; top:41px; left:640px">-->
+            <div class="slider-container"style="width:30%; float:right; margin-right:50px;"><div id="slider"></div></div>
+            <div class="ob ape">
+                <!--<div class="tn aol">
+                    <input type="text" size="100" value="29  September  2015" class="form-control" id="dateslid" style="text-align:right" readonly>
+                    <span class="bv">Upto</span>
+                </div>-->
+            </div>
+            <div id="vis-group" style="width:1455px; background:white; height: 640px; margin-top:65px;">
+                <svg id="svg-group" width="600" height="600"></svg>
+                <div id="table-container"></div>
+            </div>
+        </div>
+        <hr class="aky">
+
+
+        <div class="apa" id="sec-comparision">
+            <div class="apb">
+                <h6 class="apd">Visualization</h6>
+                <h2 class="apc">People</h2>
+            </div>
+            <div class="ob ape">
+                <div class="eo aob aog">
+                    <label>
+                        <input type="radio" id="people1" name="people" checked>
+                        <span class="aoc"></span>
+                        Averaged by group
+                    </label>
+                </div>
+                <div class="eo aob aog" id="tot">
+                    <label>
+                        <input type="radio" id="people2" name="people">
+                        <span class="aoc"></span>
+                        Total by group
+                    </label>
+                </div>
+                <!--<div class="tn aol">
+                    <input type="text" size="100" value="04 December 2014 - 28 July 2015" class="form-control" readonly>
+                    <span class="bv wt"></span>
+                </div>-->
+            </div>
+            <div id="vis-comparision" style="width:1450px;  height:600px;margin: 20px auto"></div>
+
+        </div>
+
+        <hr class="aky">
+
+        <div class="apa" id="sec-statistics">
+            <div class="apb">
+                <h6 class="apd">Visualization</h6>
+                <h2 class="apc">Finance</h2>
+            </div>
+
+            <div class="ob ape">
+                <div class="eo aob aog">
+                    <label>
+                        <input type="radio" id="radio1" name="radio" checked>
+                        <span class="aoc"></span>
+                        Averaged by group
+                    </label>
+                </div>
+                <div class="eo aob aog" id="tot">
+                    <label>
+                        <input type="radio" id="radio2" name="radio">
+                        <span class="aoc"></span>
+                        Total by group
+                    </label>
+                </div>
+                <!--<div class="tn aol">
+                    <input type="text" size="100" value="04 December 2014 - 28 July 2015" class="form-control" readonly>
+                    <span class="bv wt"></span>
+                </div>-->
+            </div>
+            <div id="vis-statistics" style="width:1450px; height:600px; margin: 20px auto"></div>
+        </div>
+
+        <hr class="aky">
+        <hr class="aky">
+
+        <div class="apa" id="sec-activities">
+            <div class="apb">
+                <h6 class="apd">Visualization</h6>
+                <h2 class="apc">Activities</h2>
+            </div>
+
+            <div class="ob ape">
+                <div class="tn aol">
+                    <input type="text" size="100" value="All activities" class="form-control" readonly>
+                    <span class="bv acm"></span>
+                </div>
+            </div>
+            <h6 class="instr"> Click and hold to persist selection</h6>
+            <div id="vis-activities" style="width: 1455px; height: 1230px; margin-top:65px; padding-right:150px; padding-top:50px; margin-bottom:40px;"></div>
+        </div>
+
+
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/raphael.js"></script>
+    <script src="assets/js/sankey.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="assets/js/grouped-categories.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="assets/js/moment.js"></script>
+    <script src="assets/js/ion.rangeSlider.js"></script>
+    <script src="assets/js/vis.js"></script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            var sankey = new Sankey();
+            sankey.stack(0, Countries);
+            sankey.stack(1, Partners);
+            sankey.stack(2, Activities);
+            sankey.setData(Partners_by_Country.concat(Activities_by_Partner));
+            sankey.draw();
+        });
+    </script>
+    <script src="assets/js/cycle.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="assets/js/d3-tip.js"></script>
+    <script>
+        $(document).ready(function () {
+            function redraw(maps) {
+                //d3.selectAll("circle").remove();
+                d3.select("#vis-group").selectAll("svg").remove()
+                console.log("redrawing...")
+                var svg = d3.select("#vis-group").append("svg").attr("id","svg-group").attr("width",600).attr("height",600).attr("style","margin:20px; position:relative; left:12%"),
+                diameter = +svg.attr("width"),
+                g = svg.append("g").attr("transform", "translate(2,2)"),
+                format = d3.format(",d");
+                var pack = d3.pack()
+                    .size([diameter - 4, diameter - 4]);
+
+                var tip = d3.tip()
+                    .attr('class', 'd3-tip')
+                    .offset([-10, 0])
+                    .html(function (d) {
+                        return "<strong>Name:</strong> <span style='color:#d88c00'>" + d.data.name + "</span> <br /> <strong>Total members:</strong> <span style='color:#d88c00'>" + d.value + "</span> <br /> <strong>Created:</strong> <span style='color:#d88c00'>" + d.data.date + "</span>";
+                    })
+
+                svg.call(tip);
+                root = d3.hierarchy(maps)
+                    .sum(function (d) { return d.size; })
+                    .sort(function (a, b) { return b.value - a.value; });
+
+                var node = g.selectAll(".node")
+                  .data(pack(root).descendants())
+                  .enter().append("g")
+                    .attr("class", function (d) { return d.children ? "node" : "leaf node"; })
+                    .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
+                //.on('click', function (d) { console.log(d.data.name) });
+
+                node.append("circle")
+                    .attr("r", function (d) { return d.r; });
+
+                node.filter(function (d) { return !d.children; }).append("text")
+                    .attr("dy", "0.3em")
+
+                tab = '<h3 style="color:black">Number of groups</h3><table class="cl">'
+                for (var k in maps.children) {
+                    tab += '<tr><th>' + (maps.children[k].name) + '</th></tr>'
+                    for (var i in maps.children[k]) {
+                        r = maps.children[k][i];
+                        if (typeof (r) != 'string') {
+                            for (var m in r) {
+                                tab += '<tr><td>' + r[m].name + '</td><td>' + r[m].children.length + '</td></tr>'
+                            }
+                        }
+                    }
+                }
+                tab += '</table>';
+                $("#table-container").empty();
+                $("#table-container").append(tab);
+            }
+            redraw(map);
+            $("#slider").ionRangeSlider({
+                min: moment('2013-05-11').subtract(0, "years").format("X"),
+                max: moment('2015-09-29').format("X"),
+                from: moment('2015-09-29').subtract(0, "months").format("X"),
+                prettify: function (num) {
+                    return moment(num, "X").format("LL");
+                },
+                onChange: function (curdate) {
+                    function clone(obj) {
+                        // Handle the 3 simple types, and null or undefined
+                        if (null == obj || "object" != typeof obj) return obj;
+
+                        // Handle Date
+                        if (obj instanceof Date) {
+                            var copy = new Date();
+                            copy.setTime(obj.getTime());
+                            return copy;
+                        }
+
+                        // Handle Array
+                        if (obj instanceof Array) {
+                            var copy = [];
+                            for (var i = 0, len = obj.length; i < len; i++) {
+                                copy[i] = clone(obj[i]);
+                            }
+                            return copy;
+                        }
+
+                        // Handle Object
+                        if (obj instanceof Object) {
+                            var copy = {};
+                            for (var attr in obj) {
+                                if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+                            }
+                            return copy;
+                        }
+
+                        throw new Error("Unable to copy obj! Its type isn't supported.");
+                    }
+                    var value = curdate.from;
+                    var dt = new Date(0);
+                    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    dt.setUTCSeconds(value);
+                    //$('#dateslid').attr("value", dt.getDate() + "  " + monthNames[dt.getUTCMonth()] + "  " + dt.getFullYear());
+                    curdate = (dt.getFullYear() + "-" + ('0' + (dt.getUTCMonth() + 1)).slice(-2) + "-" + ('0' + dt.getDate()).slice(-2) + 'T00:00:00');
+                    //console.log(curdate)
+                    var maps = clone(map);
+                    for (c in maps.children) {
+                        var child = maps.children[c];
+                        for (p in child.children) {
+                            var innerChild = child.children[p];
+                            deleted = []
+                            for (g in innerChild.children) {
+                                var group = (innerChild.children[g])
+                                if ((curdate) <= (group.date)) {
+                                    deleted.push(group)
+                                }
+                            }
+                            for (d of deleted) {
+                                x = innerChild.children.indexOf(d)
+                                innerChild.children.splice(x, 1)
+                            }
+                        }
+                    }
+                   redraw(maps);
+                }
+            });
+        });
+        
+    </script>
+    <script>
+        $(function () { while (window.BS && window.BS.loader && window.BS.loader.length) { (window.BS.loader.pop())() } })
+    </script>
+</body>
+</html>

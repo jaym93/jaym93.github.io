@@ -1,0 +1,145 @@
+/*
+ because without a transition on these users will have a seizures.
+*/
+*{
+
+	-webkit-transition: all 0.75s;
+	-moz-transition: all 0.75s;
+	-ms-transition: all 0.75s;
+	-o-transition: all 0.75s;
+	transition: all 0.75s;
+    font-family: Roboto, Arial;
+}
+
+#vis-activities svg {
+    width: 1420px;
+    padding-right:50px;
+}
+
+svg > text > tspan {
+    color:#fff;
+}
+
+#vis-activities {
+    background: white;
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: black;
+    background: transparent !important;
+}
+
+::selection {
+    color: black; 
+    background: transparent !important;
+}
+
+.dropdown {
+    display: inline !important;
+}
+
+#vis-group circle {
+  fill: rgb(232, 226, 255);
+  fill-opacity: .15;
+  stroke: rgb(212, 203, 242);
+  stroke-width: 1px;
+}
+
+#vis-group .leaf circle {
+  fill: #d88c00;
+  fill-opacity: 1;
+}
+
+#svg-group text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+#svg-group .label {
+  font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+
+.label,
+.node--root,
+.node--leaf {
+  pointer-events: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  font-size:10px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.node {
+    margin:5px;
+}
+
+iframe {
+    background:#fff;
+    padding:10px;
+    position:relative;
+}
+iframe html {
+    overflow:hidden;
+}
+
+#table-container {
+    float:right;
+    width:30%;
+    padding-top:1%;
+    font-family: 'Open Sans'
+}
+
+#table-container td {
+    padding:1px;
+    color:black;
+}
+
+#table-container th {
+    padding:3px;
+    border-top: 1px solid #ccc;
+    color: #444;
+}
+
+.cl > thead > tr > th, .cl > tbody > tr > th, .cl > tfoot > tr > th, .cl > thead > tr > td, .cl > tbody > tr > td, .cl > tfoot > tr > td {
+    border-top: 0px
+}
+
+h6.instr {
+    position: relative;
+    color: #555;
+    top: 100px;
+    font-size: 15px;
+    left: 450px;
+}
+
+html {
+    overflow-x:hidden;
+}

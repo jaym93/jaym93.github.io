@@ -1,0 +1,631 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Data -->
+    <title>DIY Smart Homes &middot; Jayanth M</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Masters Capstone project, looking into democratization of IoT devices and localized processing of data." />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/line-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/lightgallery.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link href="css/sweetalert.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,800%7CMontserrat:700%7COswald:300%7CRaleway:300,900)">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/responsive.css" rel="stylesheet" type="text/css">
+
+    <!--Analytics-->
+    <script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("687206710");
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-89663858-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+<body id="bigWrapper" data-spy="scroll" data-target=".navbar-default" data-offset="100">
+
+    <!--preloader-->
+    <div class="ip-header">
+        <div class="ip-logo">
+            <center><h3>Loading, hang on...</h3></center>
+        </div>
+        <div class="ip-loader" id="IDID">
+            <img src="img/preloader.svg" width="50" alt="">
+        </div>
+    </div>
+    <!--end preloader-->
+
+    <header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-spy="affix" data-offset-top="50">
+
+            <div class="container-fluid">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand Glow" href="index.html"><img src="img/logo.png" style="width:45px;resize:both" /></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="index.html#intro">Home</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="https://plus.google.com/+JayanthM"><i class="fa fa-google-plus last-child"></i></a></li>
+                        <li><a href="https://github.com/jaym93"><i class="fa fa-github last-child"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/jayanthm"><i class="fa fa-linkedin last-child"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+
+    <section id="hci-intro" style="background-image: url('img/backdrops/rules_bg.jpg'); background-size:cover; background-attachment:fixed;">
+        <div class="black-overlay"></div>
+
+        <div class="container VContentWrapperTable">
+            <div class="row VContent">
+                <div class="col-md-12 text-center">
+                    <h3 class="WhiteText Glow">HCI Masters Project</h3>
+                    <h1 class="WhiteText Glow">DIY Smart Homes</h1>
+                    <div class="quick-jump MarginTop30">
+                        <a data-scroll class="quick-jump-btn info" href="#problem"><i class="fa fa-warning"></i></a>
+                        <a data-scroll class="quick-jump-btn info" href="#solution"><i class="fa fa-bullseye"></i></a>
+                        <a data-scroll class="quick-jump-btn info" href="#summary"><i class="fa fa-commenting"></i></a>
+                        <a data-scroll class="quick-jump-btn warning" href="#process"><i class="fa fa-gears"></i></a>
+                        <!--<a data-scroll class="quick-jump-btn warning" href="#prototype"><i class="fa fa-th-large"></i></a>
+                        <a data-scroll class="quick-jump-btn success" href="#insights"><i class="fa fa-sticky-note"></i></a>-->
+                        <a data-scroll class="quick-jump-btn success" href="#results"><i class="fa fa-trophy"></i></a>
+                        <a data-scroll class="quick-jump-btn danger" href="#links"><i class="fa fa-external-link"></i></a>
+                    </div>
+                        <div class="col-md-offset-3 col-md-3 col-sm-6 hidden-xs proj-contact">
+                            <a target="_blank" href="https://www.linkedin.com/in/jayanthm" class="WhiteText" style="display:inline">
+                                <img src="img/people/jayanth.jpg" />
+                                Jayanth
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-sm-6 hidden-xs proj-contact">
+                            <a target="_blank" href="https://www.linkedin.com/in/briandjonesgt/" class="WhiteText" style="display:inline">
+                                <img src="img/people/brian.jpg" />
+                                Brian
+                            </a>
+                        </div>
+                </div>
+            </div>
+            <div id="scrolldown" class="scrollhint">
+                <a data-scroll href="#problem"><span></span><span></span><span></span></a>
+            </div>
+        </div>
+        <a data-scroll class="scroll-top" href="#hci-intro" style="position:fixed; bottom:15px; right:15px;"><i class="fa fa-chevron-up"></i></a>
+    </section>
+    <div class="container">
+        <div class="row PaddingTop30">
+            <div data-scroll-reveal="enter left move 10px over 1s after 0.2s" class="col-md-7">
+                <div class="PositionRelative" id="problem">
+                    <div class="NumberTextIntro PositionRelative">
+                        <h3 class="TextNexttoNumber">Problem</h3>
+                    </div>
+                </div>
+                <p class="SimpleText">
+                    Smart homes are still a niche many people are afraid to explore. The cost, interbrand compatibility, concerns with security, paranoia about privacy and other factors surrounding smart homes are a major hindrance to the rapid growth of IoT.
+                </p>
+                <p class="SimpleText">
+                    Can people build their own smart home systems? Can they connect it all up by themselves, and do so in a safe and effective manner? What are the challenges and opportunities here? What really is the factor that is preventing millions around the world to not explore this new and exciting generation of ubiquitous computing?
+                </p>
+                <p class="SimpleText">
+                    On finer details, do people prefer a command-line scripting interface or a graphical user interface? Do they want to process data at home on local computers than use something like AWS? Are they comfortable building their own sensors from components or prefer to buy prebuilt ones? How much of a learning curve is it, and are there benefits to asking people to go the extra mile?
+                </p>
+                <hr />
+                <div class="PositionRelative" id="solution">
+                    <div class="NumberTextIntro PositionRelative">
+                        <h3 class="TextNexttoNumber">Research</h3>
+                    </div>
+                </div>
+                <p class="SimpleText">
+                    Obviously, the design of such a system is not a simple problem to solve. The solution involves understanding human factors, the opinions of Subject Matter Experts, Systems Thinking, User Centered Design and more. 
+                </p>
+                <p class="SimpleText">
+                    This project is an ongoing investigation into the houses and minds of early smart home adopters, SMEs, and even common people with varying skill-sets in programming embedded systems, Application Programming Interfaces (APIs), off-the-shelf sensors and actuators, and wireless protocols like Z-wave, ZigBee or Bluetooth.
+                </p>
+                <p class="SimpleText">
+                    The outcome of the project will be a set of design insights, several proof-of-concepts and some recommendations in design and programming for a smart home system for widespread adoption, ease of use and more importantly, democratizing the data so users can become evangelists for the next generation of computers.
+                </p>
+            </div>
+            <div id="summary" data-scroll-reveal="enter right move 10px over 1s after 0.2s" class="col-md-5 PositionRelative LightGreyBackground">
+                <div class="ImageWrapper summaryImage">
+                    <img src="img/portfolio/awhome/awarehome.jpg" class="img-responsive ParallaxImageBorder" alt="the aware home">
+                </div>
+                <div class="CaptionFlyingBox">
+                    <h5 class="text-center">The Aware Home at Georgia Tech</h5>
+                </div>
+                <div class="uncont">
+                    <div class="info-content">
+                        <p>
+                            <span class="detail-container">
+                                <span class="detail-label">Type</span>
+                                <span class="detail-value">Capstone project, Individual, Mentored</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Role</span>
+                                <span class="detail-value">User Research, UX design, making PoCs, testing prototypes</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">1 year (May 2017 - May 2018)</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Tools</span>
+                                <span class="detail-value">Interview design, cognitive walkthroughs, Pen-and-paper prototyping, Arduino, Raspberry Pi, Z-wave networks, Slack, Web</span>
+                            </span>
+                            <span class="detail-container">
+                                <span class="detail-label">Objectives</span>
+                                <span class="detail-value">Early stage research, UI Design, Product design, Rapid prototyping, Prototype evaluation, Implementation recommendation</span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="PositionRelative" id="process">
+            <div class="NumberTextIntro PositionRelative">
+                <h3 class="TextNexttoNumber">Process</h3>
+            </div>
+        </div>
+        <div id="tlc" class="timeline-container PositionRelative col-md-12">
+            <ul class="timeline">
+                <li class="timeline-inverted" data-scroll-reveal="enter right move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">1</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Background</h3>
+                                <div class="smallHeader">How I got interested in the project</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        Back in Fall of 2016, we were asked to attend an on-campus seminar as a part of a course and write a brief report about it. The day I chose to explore on-campus seminars fortunately coincided with the Aware Home Seminar, which was atypically being held in the Home itself. Not knowing what to expect, I walked in and discovered the place that would fascinate me for the rest of my Georgia Tech days.
+                                    </p>
+                                    <div class="ImageWrapper">
+                                        <img alt="inside aware home" class="BlogImage img-responsive" src="img/portfolio/awhome/awhome_inside.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">Inside the Aware Home</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        This 'Living Laboratory' for ubiquitous computing research was <a target="_blank" href="https://www.cc.gatech.edu/fce/house/cobuild99_final.html">founded by Dr. Abowd and several others at the GVU center </a> in 1999, for studying everyday activities and how technology can support and supplement humans living in such an environment. Over the years, it has grown to support many academic and industrial projects, accumulating many sensors, actuators and smart home equipment bought, donated and built for the Aware Home.
+                                    </p>
+                                    <div class="miniImageWrapper">
+                                        <img alt="ambient alerting panel" class="BlogImage mini40 img-responsive" src="img/portfolio/awhome/ambalert.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">The Ambient Alerting Panel</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        After stumbling across this wonderful place, I decided to get involved with the ongoing projects there. I spent many days exploring the home and its vast collection of functioning and legacy projects, various systems, data streams and so on. In the Spring of 2016, I volunteered to work for credit in the Aware Home, studying and documenting existing systems and identifying opportunities with data collected, as well as helping the lab assistants with creating networked systems. I also collaborated with the Ambient Alerting panel, linking the lights to <a target="_blank" href="https://ifttt.com/">IFTTT</a> with inputs from sensors fed through a <a target="_blank" href="https://www.particle.io/products/hardware/photon-wifi-dev-kit">Particle Photon</a>.
+                                    </p>
+                                    <p class="text-justify">
+                                        Another major accomplishment during the time was <a target="_blank" href="https://github.com/jaym93/awhome-squak">creating a Slack Bot</a> for understanding natural language commands sent over Slack and converting it into parsed JSON, enabling further actions. This was my first foray into understanding how smart home systems work, vastly differing from my old project <a href="switchb.html"> 'Internet Controlled Switchboard' </a> from my undergrad years.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">2</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Inspiration</h3>
+                                <div class="smallHeader">How I wanted to solve the problem</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        As a kid, you very likely played with Lego&reg;s. Would you buy a completely built model of the Starship Enterprise, when you'd rather get the blocks and build on your own?
+                                    </p>
+                                    <p class="text-justify">
+                                        My solution would be based on a similar premise. Building a smart home all by yourself would be a creative and rewarding experience, but then, building it should not be so complex that it would deter you from building it in the first place. Obviously, the learning curve for building a smart home is much steeper than the one for learning Lego&reg; blocks, but if the reward was worth it, why wouldn't you?
+                                    </p>
+                                    <div class="ImageWrapper">
+                                        <img alt="Don Norman's 'UX Crossover Point" class="BlogImage img-responsive" src="img/portfolio/awhome/ux_cross.jpg" style="max-width:700px;">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">Don Norman's 'UX Crossover Point'</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        The 'UX Crossover Point' is the point where a technology is sufficiently mature for designers to treat the problem from the users' perspective and think about designing solutions rather than treat it as a experimental research project. The rise in platforms like the <a target="_blank" href="https://www.wink.com/">Wink Hub</a> and <a target="_blank" href="https://www.samsung.com/us/smart-home/smartthings/">Samsung SmartThings</a> indicate the readiness of the technology for a design intervention and a focus on the users. The rise of commercial Machine Learning that can run even on embedded systems like the Raspberry Pi, and the ease of use of Machine Learning with frameworks like CoreML and Tensorflow Lite opens up the field to common users on ubiquitous devices, which can form a cluster system with power unimaginable even a few years ago.
+                                    </p>
+                                    <p class="text-justify">
+                                        Another reason why I believed this would be a successful system was the resounding success of MOOC platforms, inspiring millions around the world wanted to learn new skills, programming included, to get smarter. Therefore, I would not have to limit my design to only experts, or strip it of advanced capabilities to keep it simple.
+                                    </p>
+                                    <p class="text-justify">
+                                        Finally, my frustration with where UX has been going in the modern world greatly motivated me to build something that did not confine you to a single workflow, instead allowing you to explore creatively and think differently to automate aspects of your own home and beyond. Also, drawing inspiration from early days of computers, the Open Source Movement and DIY platforms like <a target="_blank" href="instructables.com">Instructables</a>, and I have been an advocate of open systems, tinker-friendly technology and platforms for sharing knowledge. I believe treating users as co-developers presents advantages that are critically needed for the <a target="_blank" href="https://www.cc.gatech.edu/classes/AY2013/cs4470_fall/slides/Ubicomp-and-Vision.pdf"> next wave of computing</a>, with Internet of Things making the biggest splash since the proliferation of personal computing in the 80s and 90s.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">3</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Research</h3>
+                                <div class="smallHeader">Exploring the State of the Art and understanding user needs</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        There is plenty of literature that exists out there for smart home enthusiasts - everything from novice blogs expressing the frustration of technology, to Youtube videos on how to install smart homes, to research papers that explore ubiquitous computing. Since my project is time and resource constrained, to mitigate the effects of conducting user research on a small sample size, exploring these were critical. Also, such an endeavor helps me understand the key areas I need to solve this problem.
+                                    </p>
+                                    <p class="text-justify">
+                                        In addition to literature survey, conversations with smart home users, colleagues at the Aware Home and DIY enthusiasts I know from my circles opened up a trove of valuable insights.
+                                    </p>
+                                    <div class="ImageWrapper">
+                                        <img alt="Wiring the Z-wave switches" class="BlogImage img-responsive" src="img/portfolio/awhome/switches.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">Wiring the Z-wave switches</h5>
+                                        </div>
+                                    </div>
+                                    <p class="text-justify">
+                                        Unless you are working on something like a rocket launch interface for a space travel company that you design and very likely never use yourself, I do not believe the adage "you are not the user" applies. Therefore, I am currently exploring first-hand converting my own house into a smart home (Thanks, Jeff!), having added several sensors and systems over the past few months, including studying domestic wiring and tearing up the walls to reconfigure and troubleshoot issues with smart switches and other appliances, which has proved invaluable in giving me a front row account on how hard a problem this is, exactly.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">4</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Interviews</h3>
+                                <div class="smallHeader">Understanding whom I am designing for</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        One of the key steps of <a target="_blank" href="https://en.wikipedia.org/wiki/User-centered_design">UCD</a> is to actually talk to users of your system to understand their needs, capabilities and limitations. For this, I chose to do a hybrid approach between an <a target="_blank" href="https://en.wikipedia.org/wiki/Ethnography">ethnographic study</a> and <a target="_blank" href="https://en.wikipedia.org/wiki/Contextual_inquiry">contextual interview</a>. 
+                                    </p>
+                                    <p class="text-justify">
+                                        After completing the necessary human subject research approvals, I set about finding my target user group - people who did not have smart home experience beyond owning perhaps a Google Home or Amazon Echo (so I could have them install a device and find out exactly how much the effort was), and people who own and/or live in a smart home (so I could learn about their experiences and expectations of a smart home system).
+                                    </p>
+                                    <!--<div class="ImageWrapper">
+                                        <img alt="Visiting smart homes" class="BlogImage img-responsive" src="img/portfolio/awhome/visits.jpg">
+                                        <div class="CaptionFlyingBox">
+                                            <h5 class="text-center">Visiting Smart Homes</h5>
+                                        </div>
+                                    </div>-->
+                                    <p class="text-justify">
+                                        My primary interview questionnaire collected the following data:
+                                        <ul>
+                                            <li>Basic demographics</li>
+                                            <li>Living arrangement and house configuration</li>
+                                            <li>Frequency of use of Smart Home equipment they own</li>
+                                            <li>Experience with the equipment / installation</li>
+                                            <li>Familiarity with and willingness to learn embedded systems (like Arduino), task automation tools (like IFTTT), scripting tools (like Python or BASH), and wireless protocols (like Bluetooth or Z-wave) </li>
+                                            <li>Things they rely on others to do, or wish was taken care of</li>
+                                            <li>Self-evaluation of capability of putting a system together that solves the problem above</li>
+                                            <li>A cognitive walkthrough of the 'rules' they would need to set up the hypothetical system, to see if they would think of all the possibilities and exception cases</li>
+                                            <li>The willingness to build such a system (with or without assistance), and the cost differential that would convince them to buy one over build one</li>
+                                            <li>The kind of assistance they would need</li>
+                                            <li>Potential concerns (for example, security or privacy) they would have in a system they have built/bought</li>
+                                        </ul>
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">5</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Hypotheses</h3>
+                                <div class="smallHeader">"I cannot provide details of an ongoing investigation!"</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        Since this is ongoing research AND this website is publicly accessible, publishing my hypotheses may bias potential test subjects. If you want to know my hypotheses, <a href="mailto:jaym93@gmail.com">talk to me!</a>
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">6</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Expert Opinions</h3>
+                                <div class="smallHeader">Where the field is heading and what is possible today</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        Obtaining the views of Subject Matter Experts (SMEs) seemed pertinent to my exploration of smart homes - mainly to make sure my eventual set of recommendations would be implementable in practice. After all, a design solution that satisfies all the user needs but can never be built with the technology we currently have is worthless.
+                                    </p>
+                                    <p class="text-justify">
+                                        I plan to interview experts in the fields of smart homes, embedded platforms, communication systems, wireless protocols, machine learning, distributed systems, cognitive science, computational creativity and other related areas to understand their view on the user needs and my initial ideas at a solution.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">7</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Prototype Building</h3>
+                                <div class="smallHeader">What are the possible solutions that provide a good balance between user needs and practicality of implementation?</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        After learning the needs of users and gaining a deeper understanding of the field from experts, the next step is to design several low-fidelity solutions that balance the two. These solutions will be prototyped, with the firm knowledge that they are technologically feasible.
+                                    </p>
+                                    <p class="text-justify">
+                                        Low fidelity prototypes will take the form of paper prototypes, Wizard-of-Oz chatbots, physical prototypes, and so on. The prime objective of this phase is to create enough artifacts to validate my assumptions about my solution and prepare for testing with users, by coming up with a set of key measures that evaluate how effective my prototypes are.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">8</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Prototype Evaluations</h3>
+                                <div class="smallHeader">Do my prototypes really solve the problem?</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                         This is the stage in which I think user feedback really matters. As a rule, UX Researchers do not ask users what the solution should look like in the beginning (What work would we have if they all made their own solutions?)
+                                    </p>
+                                    <p class="text-justify">
+                                        Once I have designed solutions and evaluation metrics, I take a look at how existing solutions (if any) handle the problem, and compare it to my own. Then, I let users evaluate my prototypes, with an intent to understand the extent to which these prototypes fill the gaps in user needs. 
+                                    </p>
+                                    <p class="text-justify">
+                                        The process will differ from a traditional prototype evaluation because it is meant as a DIY solution, which means that the prototypes do come with a learning curve and the users will be modding and tweaking and building on my solution. This means testing with a wider variety of audience, with a baseline expectation that some users may not be able to pick it up as easily as others.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">9</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Reporting</h3>
+                                <div class="smallHeader">Summarizing my findings as a set of recommendations to system builders</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        At the conclusion of research, I will publish my results as a set of recommendations and a series of Proof-of-Concepts that will help my users and other organizations to build on the solution.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted" data-scroll-reveal="enter left move 10px over 1s after 0.2s">
+                    <div class="timeline-badge warning">10</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <div class="BlogPostInfoWrapper text-center">
+                                <h3>Future work and implementation</h3>
+                                <div class="smallHeader">Something to look forward to, post-graduation!</div>
+                                <div class="contog">
+                                    <div class="line-separator-small"></div>
+                                    <p class="text-justify">
+                                        I may go ahead and start building parts of the system (for fun!) after I graduate - it really is a waste of good research if it just stops at just recommendations.
+                                    </p>
+                                </div>
+                                <a class="btn btn-black toggler"><i class="fa fa-angle-double-down"></i>Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr />
+        <div id="results" data-scroll-reveal="enter right move 10px over 1s after 0.2s" class="col-md-12">
+            <div class="NumberTextIntro PositionRelative">
+                <h3 class="TextNexttoNumber">Results</h3>
+            </div>
+            <p class="SimpleText">
+                The solution will be a deep dive into smart homes and user-friendly yet highly configurable IoT. With key insights into the skill sets and expectations of my users, I can effectively design a solution that will help democratize smart homes by giving them access and ability to tap into their smart home systems and build their own unique applications and dream up use cases without having to rely on a manufacturer for new functionality.
+            </p>
+            <p class="SimpleText">
+                Inputs from SMEs will ensure that the recommendations arising out of this research will be in the realm of possibility and feasible in technology that exists today. I hope they will serve as an effective starting point for any individual or organization that wants to revolutionize smart home technology and IoT in general, just the way PCs of old used to come with hardware manuals for tinkering and understanding computers, educating several pioneers to innovate and revolutionize the field of computing forever.
+            </p>
+        </div>
+        <hr />
+        <div id="links" class="col-md-12 PaddingBottom30" data-scroll-reveal="enter right move 10px over 1s after 0.2s">
+            <div class="NumberTextIntro PositionRelative col-md-6" style="padding-left:0;">
+                <h3 class="TextNexttoNumber">Links</h3>
+            </div>
+            <div class="col-md-6 PaddingTop30">
+                <a href="http://www.awarehome.gatech.edu/" target="_blank" class="btn btn-black">Aware Home Official Website</a>
+                <a href="https://github.com/jaym93/awhome-squak" target="_blank" class="btn btn-black MarginTop30">GitHub</a>
+                <a href="https://company-90215.frontify.com/d/rvR7kug1hl2y/aware-home-style-guide" target="_blank" class="btn btn-black MarginTop30">Aware Home Style Guide</a>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <footer id="footer" class="dark">
+
+        <div class="topLine">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 centered-sm">
+                        <h3 class="WhiteText Glow">&lt;Portfolio/&gt;</h3>
+                        <p class="SoftGreyText">
+                            Page designed for CS8803 Intro to HCI<br /><br />
+                        </p>
+                    </div>
+                    <div class="col-sm-4 text-right centered-sm">
+                        <h5 class="WhiteText">
+                            Address
+                        </h5>
+                        <p class="SoftGreyText">
+                            Atlanta<br>
+                            Georgia<br>
+                            United States<br>
+                            <b>Phone:</b> +1 (404) 429 6854<br>
+                            <b>Email:</b> jaym93@gmail.com
+                        </p>
+                    </div>
+                    <div class="col-sm-2 text-right centered-sm">
+                        <h5 class="WhiteText">
+                            Back to...
+                        </h5>
+                        <ul class="list-unstyled SoftGreyText">
+                            <li><a href="index.html#about" target="_blank">About</a></li>
+                            <li><a href="index.html#services" target="_blank">Passion</a></li>
+                            <li><a href="index.html#portfolio" target="_blank">Showcase</a></li>
+                            <li><a href="index.html#contact" target="_blank">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottomLine">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 centered-sm SoftGreyText">
+                        <p class="copyright no-margin-bottom"><h5> Jayanth M </h5> &copy; 2016 All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-right centered-sm SoftGreyText">
+                        <a href="https://plus.google.com/+JayanthM" target="_blank" class="WhiteText">Google Plus</a> / <a class="WhiteText" href="https://github.com/jaym93" target="_blank">GitHub</a> / <a class="WhiteText" target="_blank" href="https://www.linkedin.com/in/jayanthm">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/scripts.min.js"></script>
+    <script src="js/lightgallery.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script type="text/javascript">
+        $('#tlc').lightGallery({
+            thumbnail: true,
+            selector: '.lgimg'
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.contog').slideToggle();
+            $(".toggler").on("click", function () {
+                var $ele = $(this);
+                $ele.siblings('.contog').slideToggle();
+                $ele.html() == "<i class=\"fa fa-angle-double-down\"></i>Read more" ? $ele.html("<i class=\"fa fa-angle-double-up\"></i>Show less") :  $ele.html("<i class=\"fa fa-angle-double-down\"></i>Read more");
+            });
+        });
+    </script>
+    
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">IE SUCKS!</h1>
+            <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="img/browsers/chrome.png" alt="">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="img/browsers/firefox.png" alt="">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="img/browsers/opera.png" alt="">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="img/browsers/safari.png" alt="">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="img/browsers/ie.png" alt="">
+                        <div>IE (New)</div>
+                    </a>
+                </li>
+            </ul>
+            <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+        </div>
+    <![endif]-->
+
+</body>
+</html>
