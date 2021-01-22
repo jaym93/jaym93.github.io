@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="899px" height="907px" viewBox="0 0 899 907" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPad-Pro-Landscape" transform="translate(-307.000000, -186.000000)">
+            <g id="Group" transform="translate(307.000000, 177.000000)">
+                <polygon id="back1" points="438 463 378.427812 36.1988673 547.69897 47.2543345"></polygon>
+                <polygon id="back10" points="438 463 14.4465284 339.323465 82.7986174 163.884154"></polygon>
+                <polygon id="back11" points="438 463 128.610241 102.677795 299.83391 38.9113044"></polygon>
+                <polygon id="back9" points="438 463 30.8300285 584.474637 21.4006759 413.049091"></polygon>
+                <polygon id="back8" points="438 463 136.851961 823.963466 60.5400801 648.923657"></polygon>
+                <polygon id="back7" points="438 463 385.65124 876.136344 221.176461 828.748432"></polygon>
+                <polygon id="back6" points="438 463 625.863948 857.182389 451.939042 876.291369"></polygon>
+                <polygon id="back5" points="438 463 805.65495 699.044727 679.178832 810.937666"></polygon>
+                <polygon id="back4" points="438 463 884.639971 463.307986 838.21741 632.866577"></polygon>
+                <polygon id="back3" points="438 463 795.543156 233.946999 851.489493 391.551956"></polygon>
+                <polygon id="back2" points="438 463 624.971216 57.9242417 771.676059 161.753433"></polygon>
+                <polygon id="front11" points="438 463 202.781512 67.4941585 375.508781 12.9361135"></polygon>
+                <polygon id="front10" points="438 463 50.6600037 269.190002 140.768904 116.701883"></polygon>
+                <polygon id="front9" points="438 463 12.6180912 511.784341 8.35837478 337.845697"></polygon>
+                <polygon id="front8" points="438 463 104.21891 738.22228 23.5025395 586.38989"></polygon>
+                <polygon id="front7" points="438 463 319.496064 862.798597 168.810252 786.357467"></polygon>
+                <polygon id="front5" points="438 463 761.038189 748.361591 629.386677 862.036291"></polygon>
+                <polygon id="front4" points="438 463 806.626881 528.062999 871.796617 539.565521 804.482776 698.26461"></polygon>
+                <polygon id="front3" points="438 463 866.428281 283.641151 904.366018 463.45689"></polygon>
+                <polygon id="front2" points="438 462.997441 688.917554 101.949997 830.755427 212.689707"></polygon>
+                <polygon id="front1" points="438 463 458.094085 0.837666084 629.004829 49.287459"></polygon>
+                <polygon id="front6" points="438 463 555.490199 884.416033 380.841922 890.879142"></polygon>
+                <path d="M437,599 C513.110726,599 574,538.110726 574,463 C574,387.889274 513.110726,327 438,327 C362.889274,327 302,387.889274 302,463 C302,538.110726 362.889274,599 437,599 Z" id="oval1" stroke="#979797" stroke-width="3" stroke-linecap="square" stroke-dasharray="15,15,15,15"></path>
+                <path d="M436.253676,700.5 C569.167628,700.5 675.5,594.167628 675.5,463 C675.5,331.832372 569.167628,225.5 438,225.5 C306.832372,225.5 200.5,331.832372 200.5,463 C200.5,594.167628 306.832372,700.5 436.253676,700.5 Z" id="oval2" stroke="#979797" stroke-width="3" stroke-linecap="square" stroke-dasharray="15,15,15,15"></path>
+                <polygon id="linepath" stroke="#979797" points="629.791938 44.8712206 824.793009 213.640877 897.917891 461.634004 826.243537 710.240869 631.119164 878.155726 375.61017 915.446894 140.401636 809.047157 1.38650029 592.092828 0.602356395 334.559745 139.316858 116.790793 374.141632 9.6401617"></polygon>
+                <polygon id="labelpath" stroke="#979797" points="263.614399 59.0441421 512.91336 29.6030281 733.913786 137.95598 866.906065 355.090352 866.709068 583.355021 733.519793 791.033565 508.170671 896.884662 255.512921 863.267225 66.5145623 697.302671 1.2102513 456.725726 71.8186907 220.635375"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

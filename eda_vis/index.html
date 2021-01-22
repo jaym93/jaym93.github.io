@@ -1,0 +1,1674 @@
+﻿
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    /* set the CSS */
+
+    .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 2px;
+    }
+
+    .tooltip-inner {
+        white-space: pre-wrap;
+    }
+
+    .tooltip {
+        white-space: pre-line;
+    }
+
+    .btn-default {
+        font-size: 13px !important;
+    }
+
+    #vis1 > svg {
+        border: 1px dashed #ccc;
+        border-left: none;
+        border-bottom: none;
+    }
+
+    .mainVis {
+        display: block;
+    }
+
+    .highlightclear {
+        font-family: 'Open Sans';
+        background-color: #efefef !important;
+    }
+
+    .dropdown {
+        font-family: 'Open Sans';
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #999;
+        font-size: 11px;
+        display: inline-block;
+        margin: 10px 5px;
+    }
+
+    .options {
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .dropdown-toggle {
+        text-transform: uppercase;
+        font-size: 11px;
+        margin-left: 4px;
+    }
+
+    #vis1, #vis2 {
+        display: block;
+        float: left;
+    }
+
+        #vis2 > svg {
+            border: 0px dashed #ccc;
+        }
+
+    #legends {
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="build/svg.js"></script>
+<script src="build/sugar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="build/svg.topath.js"></script>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+<script>
+$(document).ready(function() {
+
+
+
+
+    $.getJSON("data/data.json", function (data) {
+        mappingData(data);
+        initChart();
+         $('circle').tooltip({
+        'container': 'body',
+        'placement': 'right'
+    });
+    });
+
+    $.getJSON("data/data.json", function (data) {
+        mappingDataFG(data);
+        initChartFG();
+    });
+
+
+ $('.options').css('width',width);
+
+$('.dropdown>ul>li>a').click(function () {
+  // do something…
+    var selected = $(this).parent().attr('var');
+    var label = $(this).html();
+    $(this).parent().parent().prev().html(label.trim()+' <span class="caret"></span>');
+    if($(this).parent().parent().parent().attr('id')=='xAxisMenu') { change='xaxis'; dataForXAxis = selected; }
+    if($(this).parent().parent().parent().attr('id')=='circleSizeMenu') { change='circlesize'; dataForCircleSize = selected; }
+    if($(this).parent().parent().parent().attr('id')=='circleColorMenu') { change='circlecolor'; dataForCircleColor = selected; }
+
+    updateChart();
+})
+
+$('.clear-selected').click(function () {
+	clearSelectedNodes();
+});
+
+
+
+
+});
+</script>
+<body>
+
+    <div class="options">
+        <div class="dropdown" id="xAxisMenu">
+            X Axis
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Group start year
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li var="Group start year"><a href="#">Group start year</a></li>
+                <li var="Total members"><a href="#">Total members</a></li>
+                <li var="Female members"><a href="#">&emsp;&emsp;Female members</a></li>
+                <li var="Male members"><a href="#">&emsp;&emsp;Male members</a></li>
+                <li var="VLSA orphans"><a href="#">&emsp;&emsp;VLSA orphans</a></li>
+                <li var="VLSA vulnerable children"><a href="#">&emsp;&emsp;VLSA vulnerable children</a></li>
+                <li var="Net profits in USD"><a href="#">Net profits in USD</a></li>
+                <li var="Cumulative value in USD"><a href="#">Cumulative value in USD</a></li>
+                <li var="Max savings in USD"><a href="#">Max savings in USD</a></li>
+                <li var="Welfare in USD"><a href="#">Welfare in USD</a></li>
+                <li var="Welfare savings in USD"><a href="#">Welfare savings in USD</a></li>
+                <li var="Interest in USD"><a href="#">Interest in USD</a></li>
+                <li var="Liquidation in USD"><a href="#">Liquidation in USD</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown" id="circleSizeMenu">
+            Size
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Total members
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li var="Total members"><a href="#">Total members</a></li>
+                <li var="Female members"><a href="#">&emsp;&emsp;Female members</a></li>
+                <li var="Male members"><a href="#">&emsp;&emsp;Male members</a></li>
+                <li var="VLSA orphans"><a href="#">&emsp;&emsp;VLSA orphans</a></li>
+                <li var="VLSA vulnerable children"><a href="#">&emsp;&emsp;VLSA vulnerable children</a></li>
+                <li var="Net profits in USD"><a href="#">Net profits in USD</a></li>
+                <li var="Cumulative value in USD"><a href="#">Cumulative value in USD</a></li>
+                <li var="Max savings in USD"><a href="#">Max savings in USD</a></li>
+                <li var="Welfare in USD"><a href="#">Welfare in USD</a></li>
+                <li var="Welfare savings in USD"><a href="#">Welfare savings in USD</a></li>
+                <li var="Interest in USD"><a href="#">Interest in USD</a></li>
+                <li var="Liquidation in USD"><a href="#">Liquidation in USD</a></li>
+                <li var=""><a href="#">No size</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown" id="circleColorMenu">
+            Color
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Group start year
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li var="Group start year"><a href="#">Group start year</a></li>
+                <li var="Total members"><a href="#">Total members</a></li>
+                <li var="Female members"><a href="#">&emsp;&emsp;Female members</a></li>
+                <li var="Male members"><a href="#">&emsp;&emsp;Male members</a></li>
+                <li var="VLSA orphans"><a href="#">&emsp;&emsp;VLSA orphans</a></li>
+                <li var="VLSA vulnerable children"><a href="#">&emsp;&emsp;VLSA vulnerable children</a></li>
+                <li var="Net profits in USD"><a href="#">Net profits in USD</a></li>
+                <li var="Cumulative value in USD"><a href="#">Cumulative value in USD</a></li>
+                <li var="Max savings in USD"><a href="#">Max savings in USD</a></li>
+                <li var="Welfare in USD"><a href="#">Welfare in USD</a></li>
+                <li var="Welfare savings in USD"><a href="#">Welfare savings in USD</a></li>
+                <li var="Interest in USD"><a href="#">Interest in USD</a></li>
+                <li var="Liquidation in USD"><a href="#">Liquidation in USD</a></li>
+                <li var=""><a href="#">No color</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-default highlightclear" type="submit" onclick="clearSelectedNodes()" style="float:right; margin-top:10px">Clear Highlight</button>
+
+    </div>
+
+    <div class="mainDiv">
+        <div id="legends">
+        </div>
+        <div id="vis1">
+        </div>
+        <div id="vis2"></div>
+    </div>
+
+    <object id="yoursvg" data="Group.svg" type="image/svg+xml" style=" width:0; height:0"></object>
+
+
+    <script>
+
+    var browserWidth = $(document).width();
+     var browserHeight = $(document).height();
+
+
+var allData;
+
+
+    var width = browserWidth/13*8;
+    var graphStartX = 230;
+    var graphStartY = 150;
+    var graphWidth = width-graphStartX;
+    var height = browserHeight-54-10;
+    var graphLRMargin = 30;
+    var xPreferredNumberOfIntervals = round(browserWidth/100,0)-3;
+    var xInterval;
+    var minPartnerHeight = 25;
+    var force;
+    var minCircleSize = 5;
+
+    var scaleLabel = [];
+    var dataForXAxis = 'Group start year';
+    var dataForCircleSize = 'Total members';
+    var dataForCircleColor = 'Group start year';
+
+    var dataForYAxis = 'Partner';
+    var dataForYCategoryAxis = 'Country';
+
+    var continuousColor = false, continuousXAxis = true;
+
+    var partnerOffset = 35;
+
+    var yData, yCatData, colorData, circleSizeData;
+
+    var dataMap = [];
+    var compressedDataMap = [];
+
+    var change;
+    var drilldownAxis = -1
+    var drilldownCat = -1
+
+    var drilldownAxisValue = -1
+    var drilldownCatValue = -1
+
+    var circleNormRatio, circleSizeStandard = 14;
+
+    // These are the primary and secondary selected nodes that will
+    // be displayed in the flower graph.
+    var primarySelected;
+    var secondarySelected;
+
+    var colors = [];
+    var numSelectedNodes = 0;
+    //a color set for grouping by the group start date
+    colors[0] = '#799abc';
+    colors[1] = '#f5a95f';
+    colors[2] = '#e88081';
+    colors[3] = '#97c9c5';
+    var selectedColor = colors[0];
+
+    var xValue, maxValue, factor, shiftValue;
+
+    var firstGroupInPartner; //boolean: allows us to draw text and lines only once for each partner
+
+    var padding = 2, maxRadius = 1000;
+
+
+    var draw = SVG('vis1').size(width, height);
+    var legend = draw.nested().x(width-350).scale(0.5,0.5)
+    var instructions = draw.nested().x(0).scale(0.5,0.5)
+
+    var xDataAlias;
+
+    function mappingData(data) {
+        dataMap = [];
+        compressedDataMap = [];
+	$('.country-group').remove();
+	$('.partner-group').remove();
+
+        cleanDrawings();
+
+
+        allData = _.uniqBy(data, 'Name');
+
+                minPartnerHeight =  (height-graphStartY-54)/getDistinctValues(allData,'Partner').length;
+
+        /*allData = allData.filter(function(el) {
+    return el[dataForXAxis] !== "";
+});*/
+
+        //sorting it and getting the highest value to normalize the graph width
+        //allData.sort(sort_by(dataForXAxis, true, parseInt));
+       // maxValue = allData[0][dataForXAxis];
+
+	var filteredData = filterVals(allData, dataForYAxis, drilldownAxisValue);
+	filteredData = filterVals(filteredData, dataForYCategoryAxis, drilldownCatValue);
+
+        var xData = getDistinctValues(filteredData,dataForXAxis)
+        var allXData = getDistinctValues(allData,dataForXAxis)
+	if(allXData.length<10) {
+		continuousXAxis = false;
+	} else {
+		continuousXAxis = true;
+	}
+
+         if(continuousXAxis) xData.sort(sortNumber); else xData.sort();
+
+
+
+
+        if(!continuousXAxis) {
+         xDataAlias=xData;
+
+            xData = [];
+
+            for(var i=0;i<xDataAlias.length;i++) {
+                xData[i] = i;
+            }
+
+
+        }
+
+	if (xData == null || xData.length == 0) {
+        	maxValue = 1;
+	} else {
+        	maxValue = xData[xData.length-1];
+	}
+
+
+
+        xInterval = Math.max(Math.ceil((maxValue/xPreferredNumberOfIntervals) / 10) * 10, 1);
+
+        if(!continuousXAxis) xInterval=1;
+
+	if (maxValue == 0) {
+		maxValue = 1;
+	}
+        //coefficient to normalize the overall graph area width
+        factor = ((width-graphLRMargin*2)-(width-graphWidth))/maxValue;
+
+        if(xData.length==2) factor = ((width-graphLRMargin*2)-(width-graphWidth))/(maxValue+1);
+        //sorting by the total members so that the smaller circles can be drawn after the bigger ones and they can be on top of them
+        //allData.sort(sort_by(dataForCircleSize, true, parseInt));
+
+
+        //sorting by the countries so that the partners can be grouped by their countries
+        allData.sort(sort_by(dataForYCategoryAxis, false, function(a){return a.toUpperCase()}));
+
+    yData = getDistinctValues(allData,dataForYAxis);
+    yCatData = getDistinctValues(allData,dataForYCategoryAxis);
+
+    circleSizeData = getDistinctValues(allData,dataForCircleSize);
+
+    circleSizeData = unique(circleSizeData);
+
+    circleSizeData.sort(sortNumber);
+
+       circleNormRatio = circleSizeData[circleSizeData.length-1]/11;
+
+
+
+
+         var text = draw.text(dataForYAxis).move(75,graphStartY-minPartnerHeight).addClass('yaxis-label').font({family:'Open Sans',size:12}).style('font-weight','bold').opacity;
+         var text = draw.text(dataForYCategoryAxis).move(9,graphStartY-minPartnerHeight).addClass('ycataxis-label').font({family:'Open Sans',size:12}).style('font-weight','bold');
+
+
+	 if (scaleLabel != null) {
+	     for (l = 0; l < scaleLabel.length; l++) {
+	     	scaleLabel[l].text('');
+	     }
+	 }
+
+        colorData = getDistinctValues(allData,dataForCircleColor);
+
+                if(dataForCircleColor=='Group started on')
+                    for(var k=0;k<colorData.length;k++) {
+                        colorData[k] = colorData[k].substring(0, 4);
+                    }
+
+                colorData.sort();
+                colorData = unique(colorData);
+
+                if(colorData.length>10) continuousColor = true;
+
+        if(continuousColor) {
+            colorData.sort(sortNumber);
+            //colorData.filter(function(e){ return e === 0 || e });
+        }
+
+        for(i=0;i<yData.length;i++) {
+
+     	    var partnerGroup = draw.group().addClass('partner-group').addClass('btn');
+            var axisText = draw.text(yData[i]).addClass('yaxis-label').font({family:'Open Sans',size:11}).remember('cindex', $('.ycataxis-label').length - 2);
+            var clickableRegionAxis = draw.rect(graphStartX-80, 20).remember('index', i).opacity(0).remember('cindex', $('.ycataxis-label').length - 1).addClass('yaxis-click');
+	    clickableRegionAxis.click(function() {
+		//if (drilldownAxis == this.remember('index')) {
+
+		    if (drilldownAxis >= 0) {
+			drilldownAxis = -1;
+			drilldownAxisValue = -1;
+     			drilldownCat = -1;
+     			drilldownCatValue = -1;
+		} else {
+			drilldownAxis = this.remember('index');
+			drilldownAxisValue = yData[this.remember('index')];
+			drilldownCat = this.remember('cindex') - 1;
+			drilldownCatValue = this.remember('catvalue');
+		}
+
+		change = 'drilldown';
+
+
+
+		updateChart();
+	    });
+
+	    partnerGroup.add(axisText).add(clickableRegionAxis).center(graphStartX - 80, i * minPartnerHeight + graphStartY).remember('cindex', clickableRegionAxis.remember('cindex'));
+	    partnerGroup.mouseover(function() {
+		    this.opacity(.5);
+	    });
+	    partnerGroup.mouseout(function() {
+		    this.opacity(1);
+	    });
+	    partnerGroup.click(function() {
+		    this.opacity(1);
+		    //this.stroke({ fill: '#f06', opacity: 0.6, width: 5 });
+	    });
+            firstGroupInPartner = true;
+
+	    for(j=0;j<allData.length;j++) {
+
+
+            if(allData[j][dataForYAxis]==yData[i]) {
+
+                //take the latest country name to check if it's the same. if so we don't have to repeat it
+                  var lastCountryName = $('.ycataxis-label').last().find('tspan').last().html();
+
+
+                var catText;
+     		var catLine;
+                if(firstGroupInPartner && lastCountryName!=allData[j][dataForYCategoryAxis]) {
+                     //write the country names and draw horizontal lines above them
+			var countryGroup = draw.group().addClass('country-group').addClass('btn');
+		    axisText.remember('cindex', $('.ycataxis-label').length- 1);
+                    catText = draw.text(allData[j][dataForYCategoryAxis]).addClass('ycataxis-label').font({family:'Open Sans',size:11});
+                    catLine = draw.line(0, i*minPartnerHeight+graphStartY-minPartnerHeight/2, width, i*minPartnerHeight+graphStartY-minPartnerHeight/2).stroke({ width: 0.2 }).addClass('seperator').addClass('horizontalLine');
+		    var clickableRegionCat = draw.rect(70, 75).remember('index', $('.ycataxis-label').length - 1).opacity(0).remember('catvalue', allData[j][dataForYCategoryAxis]).addClass('ycataxis-click').height(25);
+		    clickableRegionCat.click(function() {
+			//if (drilldownCat + 1 == this.remember('index')) {
+
+
+			    if (drilldownCat >= 0 && drilldownAxis < 0) {
+     				drilldownCat = -1;
+				drilldownCatValue = -1;
+			} else if (drilldownCat < 0) {
+				drilldownCat = this.remember('index') - 1;
+				drilldownCatValue = this.remember('catvalue');
+     			} else {
+				drilldownCat = this.remember('index') - 1;
+				drilldownCatValue = this.remember('catvalue');
+     				drilldownAxis = -1;
+     				drilldownAxisValue = -1;
+     			}
+
+			change = 'drilldown';
+
+			updateChart();
+		     });
+
+		    countryGroup.add(catText).add(clickableRegionCat).center(43, i * minPartnerHeight + graphStartY+2);
+     		    countryGroup.mouseover(function() {
+     			this.opacity(.5);
+     		    });
+     		    countryGroup.mouseout(function() {
+     			this.opacity(1);
+     		    });
+     		    countryGroup.click(function() {
+     			this.opacity(1);
+			//this.stroke({ fill: '#f06', opacity: 0.6, width: 5 });
+     		    });
+		    clickableRegionAxis.remember('cindex', $('.ycataxis-label').length - 1);
+     		    partnerGroup.remember('cindex', clickableRegionAxis.remember('cindex'));
+                }
+		    clickableRegionAxis.remember('catvalue', allData[j][dataForYCategoryAxis]);
+
+
+                firstGroupInPartner = false;
+
+                //make the value zero if it's null
+     if(continuousXAxis) xValue = allData[j][dataForXAxis]; else {
+         for(var k=0;k<xDataAlias.length;k++) {
+          if(xDataAlias[k]==allData[j][dataForXAxis]) xValue = k;
+         }
+         //xValue = xData[k];
+     }
+                if (xValue==null || xValue == '') { xValue = 0; }
+
+		var catIndex = $('.ycataxis-label').length- 2;
+		shiftValue = (drilldownAxis == i || drilldownAxis == -1) ? ((drilldownCat == catIndex || drilldownCat < 0) ? 0 : (drilldownCat < catIndex ? -1 : 1)) : ((drilldownAxis < i) ? -1 : 1);
+
+                if(continuousColor==false)
+                for(var k=0;k<colorData.length;k++) {
+                    if (allData[j][dataForCircleColor]==colorData[k]+'') selectedColor = colors[k];
+                    if (dataForCircleColor=='Group start year' && allData[j][dataForCircleColor] + '' ==colorData[k]+'') selectedColor = colors[k];
+                }
+
+
+
+               var size = (circleNormRatio?allData[j][dataForCircleSize]/circleNormRatio:circleSizeStandard)+5;
+
+                if(continuousColor) {
+
+                    var gr = new GradientReader([{stop: 0.0, color: '#799abc'},
+                             {stop: 0.5, color: '#ccc'},
+                             {stop: 1.0, color: '#e88081'}]);
+
+                    var col = gr.getColor(100/(colorData[colorData.length-1]/allData[j][dataForCircleColor]));
+
+
+                }
+
+		var minY = graphStartY;
+		var maxY = minY + 25;
+                var dataMapObject = {minY: minY, maxY: maxY, idealradius:size/1.4, radius:0, idealcx:(graphStartX+graphLRMargin+(xValue*factor)),idealcy:height/2,x:(graphStartX+graphLRMargin+(xValue*factor))+ Math.random(), y:height / 2 + Math.random(), name:allData[j]['Name'],size:size, cx:(graphStartX+graphLRMargin+(xValue*factor)), xValue:xValue, sizeValue:allData[j][dataForCircleSize], colorValue:allData[j][dataForCircleColor], partner: allData[j]['Partner'], yIndex: i, cy:i*minPartnerHeight+graphStartY, highlighted:shiftValue, fill:selectedColor, xpos:(graphStartX+graphLRMargin+(xValue*factor)), ypos:0, opacity: 0.7, color:(continuousColor ? 'rgb(' + col[0] + ',' + col[1] + ',' + col[2] + ')' : selectedColor)};
+
+		if (dataMapObject['highlighted'] == 0) {
+		 dataMap.push(dataMapObject);
+		} else {
+                	compressedDataMap.push(dataMapObject);
+		}
+
+                if(j==allData.length-1 && i==yData.length-1) {
+
+                    //the last horizontal line after the last partner
+                    var line = draw.line(0, i*minPartnerHeight+graphStartY+12, width, i*minPartnerHeight+graphStartY+12).stroke({ width: 0.2 }).addClass('seperator');
+
+                    //draw the vertical line between the left frame and the graph
+                    var line = draw.line(graphStartX, graphStartY-12, graphStartX, i*minPartnerHeight+graphStartY+12).stroke({ width: 0.2 }).addClass('seperator');
+
+
+		    var count = 0;
+		    if (dataMapObject['highlighted'] == 0) {
+		    }
+                    for(var k=0;k<=maxValue;k++) {
+                     if(k%xInterval==0) {
+                         var xlabel = (continuousXAxis?(k+''):xDataAlias[k])+'';
+                         if (xlabel=='undefined') { xlabel='';} else
+                         var line = draw.line(graphStartX+graphLRMargin+(round(k*factor,0)), graphStartY-12, graphStartX+graphLRMargin+(round(k*factor,0)), i*minPartnerHeight+graphStartY+12).addClass('guideline').stroke({ width: 0.1 });
+                         	scaleLabel[count++] = draw.text(xlabel).move(graphStartX+graphLRMargin+(round(k*factor,0)),i*minPartnerHeight+graphStartY+20).font({family:'Open Sans',size:14,anchor:'middle'}).style('font-weight','light');
+                     }
+                    }
+
+		}
+
+
+                }
+            }
+
+        }
+
+
+
+
+}
+
+
+  //$.getJSON("data/data.json", mappingData);
+
+
+     var colorGroup;
+
+    function initChart() {
+
+      force = d3.layout.force()
+
+        /*if(!continuousXAxis) {
+             var force = d3.layout.force()
+  .nodes(dataMap)
+  .size([width, height])
+  .gravity(0)
+  .charge(0)
+           .on("tick", tick)
+       .on("start", updateIdealY);
+
+             force.start();
+  for (var i = 100; i > 0; --i) force.tick();
+  force.stop();
+        }*/
+
+
+
+        colorGroup = legend.group();
+
+        for(var i=0;i<dataMap.length;i++){
+     	     var tooltipData = dataMap[i]['name'] + '\n' +
+     		dataForXAxis + ': ' + (continuousXAxis?dataMap[i]['xValue']:xDataAlias[dataMap[i]['xValue']]) + '\n' +
+     		dataForCircleSize + ': ' + dataMap[i]['sizeValue'] + '\n' +
+     		dataForCircleColor + ': ' + dataMap[i]['colorValue'];
+	     var circle = draw.circle(dataMap[i]['size']).cx(dataMap[i]['cx']).cy(dataMap[i]['cy']).attr({ fill: dataMap[i]['color'] }).opacity(dataMap[i]['opacity']).addClass('data-point').attr('name',dataMap[i]['name']).attr('partner',dataMap[i]['partner']).remember('selected', false).remember('primary', false).remember('secondary', false).attr('title', tooltipData).remember('index', i);
+
+	    if (circle.attr('name') == firstGroup) {
+	    		primarySelected = circle;
+			circle.stroke({width: 2});
+			circle.remember('primary', true);
+		} else if (circle.attr('name') == secondGroup) {
+			secondarySelected = circle;
+			circle.stroke({width: 2});
+			circle.remember('secondary', true);
+		}
+        //when hovering over the circles
+        circle.mouseover(function() {
+
+
+
+            this.stroke({ color: '#000', width: 1 });});
+        circle.mouseout(function() {
+		if (this.remember('primary') || this.remember('secondary')) {
+			this.stroke({color: '#000', width: 2 });
+		} else {
+			this.stroke({color: '#000', width: 0 });
+		}
+
+
+	});
+
+	// You can select any number of circles to compare groups across the different x-y setups.
+	circle.click(function() {
+		if (!primarySelected.remember('secondary')) {
+			primarySelected.stroke({width: 0});
+		}
+		primarySelected.remember('primary', false);
+		if (numSelectedNodes > 0 && !primarySelected.remember('selected') && !primarySelected.remember('secondary')) {
+			primarySelected.opacity(.3);
+		}
+
+		if (numSelectedNodes > 0) {
+			this.opacity(1);
+		} else {
+			this.opacity(.7);
+		}
+		primarySelected = this;
+		this.stroke({width: 2});
+		this.remember('primary', true);
+		firstGroup = this.attr('name');
+            	updateChartFG();
+	});
+
+            circle.on('contextmenu',function(ev) {
+		if (!secondarySelected.remember('primary')) {
+			secondarySelected.stroke({width: 0});
+		}
+		secondarySelected.remember('secondary', false);
+		if (numSelectedNodes > 0 && !secondarySelected.remember('selected') && !secondarySelected.remember('primary')) {
+			secondarySelected.opacity(.3);
+		}
+
+		if (numSelectedNodes > 0) {
+			this.opacity(1);
+		} else {
+			this.opacity(.7);
+		}
+		secondarySelected = this;
+		this.stroke({width: 2});
+		this.remember('secondary', true);
+                secondGroup = this.attr('name');
+            	updateChartFG();
+                ev.preventDefault();
+                return false;
+            },false);
+
+
+
+		// You can add circles to the flower graph by double clicking.
+	circle.dblclick(function() {
+		if (!this.remember('selected')) {
+     		numSelectedNodes++;
+		this.remember('selected', true);
+		} else {
+     			numSelectedNodes--;
+			this.remember('selected', false);
+		}
+
+     		change = 'selected';
+		updateChart();
+	});
+
+        }
+             //10
+     var sizeGroup = legend.group().x(35);
+     var sizeHeader = legend.text(dataForCircleSize).x(25).addClass('sizeHeader').font({family:   'Source Sans Pro', size:14, fill: '#000',anchor:'start'}).style('font-weight','bold');
+     var minSizeData = circleSizeData[0];
+     var maxSizeData = circleSizeData[circleSizeData.length - 1];
+     var numCircles = 4;
+     sizeGroup.add(sizeHeader);
+     for (var i = 0; i < numCircles; i++) {
+     	var currSize = circleNormRatio ? (minSizeData + i * ( 1 / (numCircles -1)) * (maxSizeData - minSizeData)) : circleSizeStandard+5;
+     	var circle = legend.circle(currSize / circleNormRatio + minCircleSize).cx(40).cy((21 * i) + 38).addClass('size');
+        var circleLabel = legend.text((round(currSize,0)) + '').cx(75).cy((21 * i) + 40).addClass('sizeLabel').font({family:   'Source Sans Pro', size:14, fill: '#000',anchor:'start'})
+     	sizeGroup.add(circle);
+     	sizeGroup.add(circleLabel);
+     }
+//25
+     var colorHeader = legend.text(dataForCircleColor).x(50).addClass('colorHeader').font({family:   'Source Sans Pro', size:14, fill: '#000',anchor:'start'}).style('font-weight','bold');
+     colorGroup.add(colorHeader);
+     colorGroup.x(175);
+     if (!continuousColor) {
+     	for (var i = 0; i < colorData.length; i++) {
+     	  var currColor = legend.circle(15).cx(40).cy((20 * i) + 40).addClass('colorSwab').fill(colors[i]);
+     	  var colorLabel = legend.text('' + colorData[i]).cx(80).cy((20 * i) + 40).addClass('colorLabel').font({family:   'Source Sans Pro', size:14, fill: '#000',anchor:'start'})
+     	  colorGroup.add(currColor);
+     	  colorGroup.add(colorLabel);
+     	}
+
+	} else {
+
+	  var gr = new GradientReader([{stop: 0.0, color: '#799abc'},
+	  	{stop: 0.5, color: '#ccc'},
+                {stop: 1.0, color: '#e88081'}]);
+
+	  var minColorData = colorData[0];
+	  var maxColorData = colorData[colorData.length - 1];
+
+         var gradient = legend.gradient('linear', function(stop) {
+  stop.at(0, '#799abc')
+  stop.at(0.5, '#ccc')
+  stop.at(1, '#e88081')
+});
+          for (var i = numCircles-1; i < numCircles; i++) {
+
+     		var colorRef = minColorData + i * ( 1 / (numCircles -1)) * (maxColorData - minColorData);
+	  	var gradRect = legend.rect(120,20).move(25,40).attr({ fill: gradient })
+        colorGroup.add(gradRect);
+        colorLabel1 = legend.text(minColorData+'').move(gradRect.x(),gradRect.y()+gradRect.height()+5).addClass('colorLabel').font({anchor:'middle',family:   'Source Sans Pro', size:14, fill: '#000',anchor:'start'})
+        colorLabel2 = legend.text(colorRef+'').move(gradRect.x()+gradRect.width(),gradRect.y()+gradRect.height()+5).addClass('colorLabel').font({anchor:'middle',family:   'Source Sans Pro', size:14, fill: '#000'})
+        colorGroup.add(colorLabel1);
+        colorGroup.add(colorLabel2);
+     	  }
+	}
+
+	var xaxisLabel = draw.text(dataForXAxis).center((width+graphStartX) / 2, height - 30).addClass('xaxis-label').font({anchor:'start',family:   'Source Sans Pro', size:16, fill: '#000'});
+
+
+	$('.selection').each(function(index) {
+		this.style.position = 'absolute';
+		this.style.top = legend.y();
+	});
+
+
+     instructions.text(function(add) {
+  add.tspan('Use right and left clicks to add up to two circles to flower graph on right.').newLine()
+  add.tspan('Double click to highlight.').newLine()
+}).x(20).y(20).font({family:   'Source Sans Pro', size:13, fill: '#000',anchor:'start'}).style('font-weight','normal').style('cursor:default').front();
+           /*
+	var clearSelectedButtonGroup = draw.group().move(10,70).addClass('btn').addClass('btn-default');
+	var region = instructions.rect(100, 30).fill('none').stroke({width: .5, color: '#000'});
+	clearSelectedButtonGroup.add(region);
+	clearSelectedButtonGroup.add(draw.text('Clear Selected').center(region.cx + 1, region.cy));
+	clearSelectedButtonGroup.mousedown(function() {
+		this.opacity('.7');
+	});
+	clearSelectedButtonGroup.mouseup(function() {
+		this.opacity('.3');
+		clearSelectedNodes();
+	});
+	clearSelectedButtonGroup.click(function() {
+		clearSelectedNodes();
+	});
+	clearSelectedButtonGroup.mouseout(function() {
+		this.opacity('1');
+	});
+	clearSelectedButtonGroup.mouseover(function() {
+		this.opacity('.3');
+	});
+	clearSelectedButtonGroup.y(30).x(10); */
+    }
+
+
+    function updateChart() {
+
+  force.nodes(dataMap)
+  .size([width, endGraphY - beginGraphY])
+  .gravity(0)
+  .charge(0)
+           .on("tick", tick)
+       .on("start", updateIdealY);
+
+
+
+
+
+     if (change != 'selected') {
+        $.getJSON("data/data.json", mappingData);
+     }
+
+	var beginGraphY = graphStartY - 12;
+	var endGraphY = (yData.length - 1)*minPartnerHeight+graphStartY+12
+
+
+
+
+setTimeout(function() {
+
+
+     if(drilldownCat >= 0 && change != 'selected') {
+         force.start();
+  for (var i = 100; i > 0; --i) force.tick();
+  force.stop();
+     }
+	var center = ((endGraphY - beginGraphY) / 2) + beginGraphY;
+
+    $('.yaxis-label').each(function(index) {
+     if (index > 0 && (index - 1 != drilldownAxis && drilldownAxis >= 0 || (drilldownCat >= 0 && drilldownCat != this.instance.remember('cindex')))) {
+     	this.instance.animate().opacity(0);
+     } else {
+     	this.instance.animate().opacity(1);
+     }
+    });
+
+	var yaxisIndex = 0;
+
+    $('.partner-group').each(function(index) {
+    if (change != 'selected' && drilldownCat >= 0 && drilldownCat == this.instance.remember('cindex') - 1 && (drilldownAxis < 0 || drilldownAxis == index)) {
+		 var currY = $('.country-group').get(drilldownCat).instance.cy();
+		 var nextY;
+
+     		 if (drilldownCat < $('.country-group').length - 1) {
+     			nextY = $('.country-group').get(drilldownCat + 1).instance.cy();
+     		} else {
+     			nextY = currY + minPartnerHeight;
+     		}
+
+     		var numNeighbors = (nextY - currY) / minPartnerHeight;
+     		var ypos;
+     		if (Math.round(numNeighbors) <= 1 || drilldownAxis >= 0) {
+			ypos = center;
+		} else {
+			var start = beginGraphY + partnerOffset;
+			var end = endGraphY - partnerOffset;
+			ypos = start + (end - start)/(numNeighbors - 1)*yaxisIndex;
+		}
+
+		yaxisIndex++;
+		this.instance.remember('y', ypos);
+     		this.instance.animate().cy(ypos);
+	    } else if (drilldownCat >= 0 && change != 'selected') {
+		    this.instance.move(-100,-100);
+	    }
+    });
+
+    $('.country-group').each(function(index) {
+	    if (drilldownCat >= 0 && drilldownCat == index) {
+     		this.instance.animate().cy(center);
+	    }
+    });
+
+    $('.ycataxis-label').each(function(index, element, array) {
+     if ((index - 1) != drilldownCat && index > 0 && drilldownCat >= 0) {
+     	this.instance.animate().opacity(0);
+     } else {
+     	this.instance.animate().opacity(1);
+     }
+    });
+
+    $('.xaxis-label').each(function(index) {
+    	if (change == 'xaxis')
+	this.instance.text(dataForXAxis).center(width / 2, height - 30);
+    });
+
+    $('.horizontalLine').each(function(index) {
+	    var moveY = this.instance.cy();
+        var opacity = this.instance.opacity();
+	    if (index > 0 && (index - 1) < drilldownCat && drilldownCat >= 0) {
+		    moveY = graphStartY - 12;
+            opacity = 0;
+	    } else if (index > 0 && (index - 1) >= drilldownCat && drilldownCat >=0) {
+		    moveY = (yData.length - 1)*minPartnerHeight+graphStartY+12
+            opacity = 0;
+	    }
+	    this.instance.animate().center(this.instance.cx(), moveY).opacity(opacity);
+    });
+
+    if (change == 'circlesize') {
+	    if (dataForCircleSize == '') {
+    		$('.sizeHeader').each(function(index, value) {
+			this.instance.opacity(0);
+		});
+    		$('.size').each(function(index) {
+			this.instance.radius(0);
+		});
+    		$('.sizeLabel').each(function(index, value) {
+			this.instance.opacity(0);
+		});
+	    } else {
+     var minSizeData = circleSizeData[0];
+     var maxSizeData = circleSizeData[circleSizeData.length - 1];
+     var numCircles = 4;
+    $('.sizeHeader').each(function(index, value) {
+	    this.instance.text(dataForCircleSize).opacity(1);
+    });
+    $('.size').each(function(index, value) {
+	    var currSize = (minSizeData + index * ( 1 / (numCircles -1)) * (maxSizeData - minSizeData));
+	    this.instance.animate().radius((currSize / circleNormRatio + minCircleSize) / 2);
+    });
+    $('.sizeLabel').each(function(index, value) {
+	    var currSize = minSizeData + index * ( 1 / (numCircles -1)) * (maxSizeData - minSizeData);
+	    currSize = round(currSize,0);
+	    this.instance.text(currSize + '').font({family:   'Source Sans Pro', size:14, fill: '#000'}).opacity(1);
+    });
+	    }
+    }
+
+    if (change == 'circlecolor') {
+
+         colorGroup.clear();
+	 if (dataForCircleColor != '') {
+        var colorHeader = legend.text(dataForCircleColor).x(25).addClass('colorHeader').font({family:   'Source Sans Pro', size:14, fill: '#000'}).style('font-weight','bold');;
+     colorGroup.add(colorHeader);
+     colorGroup.x(175);
+
+
+     var numCircles = 5;
+     var minColorData = colorData[0];
+     var maxColorData = colorData[colorData.length - 1];
+     $('.colorHeader').each(function(index, value) {
+	    this.instance.text(dataForCircleColor);
+    });
+
+        if (!continuousColor) {
+
+            for (var i = 0; i < colorData.length; i++) {
+     	  var currColor = legend.circle(15).cx(40).cy((20 * i) + 40).addClass('colorSwab').fill(colors[i]);
+     	  var colorLabel = legend.text('' + colorData[i]).cx(80).cy((20 * i) + 40).addClass('colorLabel').font({family:   'Source Sans Pro', size:14, fill: '#000'})
+     	  colorGroup.add(currColor);
+     	  colorGroup.add(colorLabel);
+
+            }
+
+
+        } else {
+
+
+        var gradient = legend.gradient('linear', function(stop) {
+  stop.at(0, '#799abc')
+  stop.at(0.5, '#ccc')
+  stop.at(1, '#e88081')
+});
+          for (var i = numCircles-1; i < numCircles; i++) {
+
+     		var colorRef = minColorData + i * ( 1 / (numCircles -1)) * (maxColorData - minColorData);
+              if(minColorData==null || minColorData=='') minColorData=0;
+	  	var gradRect = legend.rect(120,20).move(25,40).attr({ fill: gradient })
+        colorGroup.add(gradRect);
+        colorLabel1 = legend.text(minColorData+'').move(gradRect.x(),gradRect.y()+gradRect.height()+5).addClass('colorLabel').font({anchor:'middle',family:   'Source Sans Pro', size:14, fill: '#000'})
+        colorLabel2 = legend.text(colorRef+'').move(gradRect.x()+gradRect.width(),gradRect.y()+gradRect.height()+5).addClass('colorLabel').font({anchor:'middle',family:   'Source Sans Pro', size:14, fill: '#000'})
+        colorGroup.add(colorLabel1);
+        colorGroup.add(colorLabel2);
+     	  }
+
+        }
+							   }
+
+	}
+
+    $('.data-point').each(function(index, value) {
+     	var maxYPos = (yData.length - 1)*minPartnerHeight+graphStartY+12
+        for(var i=0;i<dataMap.length;i++) {
+
+           if(dataMap[i]['name']==this.instance.attr('name')) {
+
+     			if (change == 'selected') {
+
+     				var opacity = this.instance.opacity();
+     				if (this.instance.remember('selected') || this.instance.remember('primary') || this.instance.remember('secondary')) {
+     					opacity = 1;
+     				} else if (numSelectedNodes > 0) {
+     					opacity = .3;
+     				} else {
+	     				opacity = .7;
+     				}
+
+				this.instance.animate(500).opacity(opacity);
+			} else {
+		    		var ypos = dataMap[i]['cy'];
+				var yAxisYPos = $('.yaxis-label').get(dataMap[i]['yIndex'] + 1).instance.remember('y');
+				var dy = 0;
+
+		    		var radius = dataMap[i]['size'] / 2;
+		    		var color = dataMap[i]['color'];
+				var opacity = this.instance.opacity();
+				if (this.instance.remember('selected') || this.instance.remember('primary') || this.instance.remember('secondary')) {
+     					opacity = 1;
+     				} else if (numSelectedNodes > 0) {
+     					opacity = .3;
+     				} else {
+	     				opacity = .7;
+     				}
+
+					this.instance.animate(500).center(dataMap[i]['cx'],ypos).attr({ fill: color }).radius(radius).opacity(opacity);
+
+
+
+		    		if (change == 'xaxis' || change == 'circlecolor' || change == 'circlesize') {
+					var titleData = dataMap[i]['name'] + '\n' +
+     						dataForXAxis + ': ' + dataMap[i]['xValue'];
+					if (dataForCircleSize != '') {
+						titleData += '\n' +
+     						dataForCircleSize + ': ' + dataMap[i]['sizeValue'];
+					}
+
+					if (dataForCircleColor != '') {
+     						titleData += '\n' + dataForCircleColor + ': ' + dataMap[i]['colorValue'];
+					}
+					this.instance.attr('title', titleData).attr('data-original-title', titleData);
+		    		}
+			}
+
+
+         }
+     }
+
+	for (var i = 0; i < compressedDataMap.length; i++) {
+           if(compressedDataMap[i]['name']==this.instance.attr('name')) {
+     			if (change == 'selected') {
+				var opacity = this.instance.opacity();
+     		  		this.instance.remember('selected', false);
+			} else {
+     				var ypos = (compressedDataMap[i]['highlighted'] > 0) ? graphStartY - 12 : maxYPos;
+				var radius = compressedDataMap[i]['size'] / 2;
+				var color = compressedDataMap[i]['color'];
+
+                		this.instance.animate(500).cy(ypos).attr({ fill: color }).radius(radius).opacity(0);
+			}
+		}
+	}
+
+
+        /*
+            if(index<dataMap.length) {
+
+                if(change=='xaxis') this.instance.animate().center(dataMap[index]['cx'],dataMap[index]['cy']);
+                if(change=='circlecolor') this.instance.animate().attr({ fill: dataMap[index]['fill'] });
+                if(change=='circlesize') this.instance.animate().radius(dataMap[i]['size']);
+
+
+            }*/
+
+
+        });
+
+
+
+
+},100);
+
+       /* $('.data-point').each(function(index) {
+            if(index<dataMap.length)
+            this.instance.animate().move(dataMap[index]['cx'],dataMap[index]['cy']);
+        });*/
+
+
+    }
+
+
+
+
+
+
+
+
+    function cleanDrawings() {
+
+         $('.guideline, .ycataxis-label, .yaxis-label, .seperator').each(function(index) {
+            this.instance.remove();
+        });
+
+        continuousColor = false;
+    }
+
+
+     function getDistinctValues(data, title) {
+
+        var lookup = {};
+        var items = data;
+        var result = [];
+
+        for (var item, i = 0; item = items[i++];) {
+            var name = item[title];
+
+            if (!(name in lookup)) {
+                lookup[name] = 1;
+                result.push(name);
+            }
+        }
+
+        return cleanArray(result);
+    }
+
+
+
+    function round(value, decimals) {
+        return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+    }
+
+
+    var sort_by = function(field, reverse, primer){
+
+        var key = primer ?
+        function(x) {return primer(x[field])} :
+        function(x) {return x[field]};
+
+        reverse = !reverse ? 1 : -1;
+
+        return function (a, b) {
+            return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+        }
+    }
+
+    function unique(array){
+        return array.filter(function(el, index, arr) {
+            return index === arr.indexOf(el);
+        });
+    }
+
+    function filterVals(array, sortOn, sortBy){
+        return array.filter(function(el, index, arr) {
+            return index === arr.indexOf(el) && (sortBy < 0 || arr[index][sortOn] == sortBy);
+        });
+    }
+
+
+
+
+    function GradientReader(colorStops) {
+
+        var canvas = document.createElement('canvas'),     // create canvas element
+            ctx = canvas.getContext('2d'),                 // get context
+            gr = ctx.createLinearGradient(0, 0, 101, 0),   // create a gradient
+            i = 0, cs;
+
+        canvas.width = 101;                                // 101 pixels incl.
+        canvas.height = 1;                                 // as the gradient
+
+        for(; cs = colorStops[i++];)                       // add color stops
+            gr.addColorStop(cs.stop, cs.color);
+
+        ctx.fillStyle = gr;                                // set as fill style
+        ctx.fillRect(0, 0, 101, 1);                        // draw a single line
+
+        // method to get color of gradient at % position [0, 100]
+        this.getColor = function(pst) {
+            return ctx.getImageData(pst|0, 0, 1, 1).data;
+        };
+
+    }
+
+    function sortNumber(a,b) {
+        return a - b;
+    }
+
+
+    function cleanArray(arr) {
+     arr = arr.filter(function( element ) {
+   return element !== undefined;
+});
+
+        return arr;
+    }
+
+    function gravity(alpha) {
+  return function(d) {
+    d.y += (d.idealcy - d.y) * alpha;
+    d.x += (d.idealcx - d.x) * alpha * 3;
+    return d;
+  };
+}
+
+/**
+ * On a tick, resolve collisions between nodes.
+ */
+function collide(alpha) {
+  var quadtree = d3.geom.quadtree(dataMap);
+  return function(d) {
+    var r = d.radius + maxRadius + padding,
+        nx1 = d.x - r,
+        nx2 = d.x + r,
+        ny1 = d.y - r,
+        ny2 = d.y + r;
+    quadtree.visit(function(quad, x1, y1, x2, y2) {
+      if (quad.point && (quad.point !== d)) {
+        var x = d.x - quad.point.x,
+            y = d.y - quad.point.y,
+            l = Math.sqrt(x * x + y * y),
+            r = d.radius + quad.point.radius + padding;
+        if (l < r) {
+          l = (l - r) / l * alpha;
+          d.x -= x *= l;
+          d.y -= y *= l;
+          quad.point.x += x;
+          quad.point.y += y;
+        }
+      }
+      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+    });
+     d.x = Math.min(Math.max(graphStartX + 10, d.x), graphStartX + graphWidth - 10);
+     if (d.x == null) {
+     	d.x = graphStartX;
+     }
+     d.y = Math.min(d.maxY, Math.max(d.minY, d.y));
+    return d;
+  };
+}
+
+    /**
+ * On a tick, apply custom gravity, collision detection, and node placement.
+ */
+function tick(e) {
+
+
+  for ( i = 0; i < dataMap.length; i++ ) {
+
+
+    var node = dataMap[i];
+    /*
+     * Animate the radius via the tick.
+     *
+     * Typically this would be performed as a transition on the SVG element itself,
+     * but since this is a static force layout, we must perform it on the node.
+     */
+    node.radius = node.idealradius - node.idealradius * e.alpha * 10;
+    node = gravity(.2 * e.alpha)(node);
+    node = collide(.5)(node);
+    node.cx = node.x;
+    node.cy = node.y;
+     /* node.cx = (node.x<graphStartX?graphStartX:node.x);
+      node.cy = (node.y<graphStartY?graphStartY:node.y);*/
+
+
+
+  }
+
+}
+
+    function updateIdealY() {
+
+
+    var remainingYCount = $('.yaxis-label').length;
+
+        var remainingLabels = [];
+
+     $('.yaxis-label').each(function(index) {
+     if (index > 0 && (index - 1 != drilldownAxis && drilldownAxis >= 0 || (drilldownCat >= 0 && drilldownCat != this.instance.remember('cindex')))) {
+
+
+     } else remainingLabels.push($(this).find('tspan').html())
+
+     });
+
+        var beginGraphY = graphStartY - 12;
+	var endGraphY = (yData.length - 1)*minPartnerHeight+graphStartY+12
+
+      var start = beginGraphY + partnerOffset;
+var end = endGraphY - partnerOffset;
+var averageSize = (end - start) / remainingLabels.length;
+
+        for ( i = 0; i < dataMap.length; i++ ) {
+        for( y = 0; y < remainingLabels.length ; y++) {
+
+
+     if(dataMap[i].partner== remainingLabels[y]) {
+                dataMap[i].idealcy = start + (end - start)/(remainingLabels.length-2)*(y-1);
+                dataMap[i].minY = Math.max(dataMap[i].idealcy - averageSize / 2, beginGraphY);
+                dataMap[i].maxY = Math.min(dataMap[i].idealcy + averageSize / 2 - 4, endGraphY);
+     }
+
+            	if (remainingLabels.length == 2 || drilldownAxis >= 0) {
+				dataMap[i].idealcy = start + (end - start) / 2;
+				dataMap[i].minY = beginGraphY;
+                		dataMap[i].maxY = endGraphY;
+			}
+        }
+        }
+
+    }
+
+
+    Array.prototype.clean = function(deleteValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deleteValue) {
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+};
+
+
+
+    //FLOWER GRAPH CODE
+
+
+     var widthFG = browserWidth/13*5-10;
+
+    var scale = browserWidth-width
+    var heightFG = browserHeight-60;
+    var drawFG = SVG('vis2').size(widthFG, heightFG);
+    var box = drawFG.viewbox({ x: 120, y: 200, width: widthFG*(1.30/(browserWidth/1280)), height: heightFG*(1.30/(browserWidth/1280)) })
+var zoom = box.zoom
+    var firstGroup='Airstrip Group Two', secondGroup = 'Airstrip Group One';
+    var firstGroupType = 'group', secondGroupType= 'group';
+         var firstGroupInfo = [], secondGroupInfo = [];
+     var originalFront=[], originalBack=[], frontShape = [], backShape = [], paths = [], paths2 = [];
+
+
+     var variables = [];
+    variables[0] = 'Total members';
+    variables[1] = 'Male members';
+    variables[2] = 'Female members';
+    variables[3] = 'VLSA orphans';
+    variables[4] = 'VLSA vulnerable children';
+    variables[5] = 'Net profits in USD';
+    variables[6] = 'Savings in USD';
+    variables[7] = 'Welfare in USD';
+    variables[8] = 'Interest in USD';
+    variables[9] = 'Liquidation in USD';
+    variables[10] = 'Cumulative value in USD';
+
+
+    document.getElementById("yoursvg").addEventListener("load", function() {
+   var doc = this.getSVGDocument();
+        var line = doc.getElementById("linepath")
+        var linesvg = drawFG.svg(line.outerHTML).fill('none').stroke({ width:0 })
+        paths = $('#linepath').attr('points').split(" ");
+});
+
+
+    var front = [], back= [], line = [], line2 = [], circleFront=[], circleBack=[], seperator=[];
+
+    for (var i=0;i<11;i++) {
+         back[i]  = drawFG.use('back'+(i+1), 'Group.svg').back()
+        back[i].fill({ color: '#e6e6e6', opacity: 1 })
+        front[i]  = drawFG.use('front'+(i+1), 'Group.svg')
+         front[i].fill({ color: '#f98e3b', opacity: 1 })
+        circleBack[i] = drawFG.circle(0).center(438,463);
+         circleFront[i] = drawFG.circle(0).center(438,463);
+                back[i].clipWith(circleBack[i]);
+                front[i].clipWith(circleFront[i]);
+
+    }
+
+     var circleLine = drawFG.circle(350);
+         circleLine.center(438,463).fill('none')
+         //99
+          var innerCircle = drawFG.circle(75);
+         innerCircle.center(438,463).fill('none').stroke({ width: 1, color:'#666' }).attr('stroke-dasharray','5,5').front();
+    //175
+     var outerCircle = drawFG.circle(150);
+         outerCircle.center(438,463).fill('none').stroke({ width: 1, color:'#666' }).attr('stroke-dasharray','5,5').front();
+
+      /*var outerCircle = drawFG.circle(225);
+         outerCircle.center(438,463).fill('none').stroke({ width: 1, color:'#666' }).attr('stroke-dasharray','5,5').front();
+*/
+
+    outerCircle.on
+
+  //$.getJSON("data/data.json", mappingDataFG);
+
+
+
+
+     function mappingDataFG(data) {
+        allData = data;
+
+
+         if(firstGroupType=='group') {
+
+          for(i=0;i<allData.length;i++) {
+              if(allData[i]['Name']==firstGroup)
+                firstGroupInfo = allData[i];
+          }
+
+         }else if(firstGroupType=='country') {
+
+             firstGroupInfo = allData[0];
+             for(var i=0;i<variables.length;i++)
+                 firstGroupInfo[variables[i]] = 0;
+             var d = 0;
+             for(var i=0;i<variables.length;i++) {
+                  for(var j=0;j<allData.length;j++) {
+                        if(allData[j]['Country']==firstGroup) {
+                            firstGroupInfo[variables[i]] += +allData[j][variables[i]];
+                            d++;
+                        }
+                  }
+                  firstGroupInfo[variables[i]] =  round(firstGroupInfo[variables[i]]/d,0);
+                 d=0;
+             }
+         }
+
+         else if(firstGroupType=='partner') {
+
+             firstGroupInfo = allData[0];
+             for(var i=0;i<variables.length;i++)
+                 firstGroupInfo[variables[i]] = 0;
+             var d = 0;
+             for(var i=0;i<variables.length;i++) {
+                  for(var j=0;j<allData.length;j++) {
+                        if(allData[j]['Partner']==firstGroup) {
+                            firstGroupInfo[variables[i]] += +allData[j][variables[i]];
+                            d++;
+                        }
+                  }
+                  firstGroupInfo[variables[i]] =  round(firstGroupInfo[variables[i]]/d,0);
+                 d=0;
+             }
+         }
+
+          else if(firstGroupType=='total') {
+
+             firstGroupInfo = allData[0];
+             for(var i=0;i<variables.length;i++)
+                 firstGroupInfo[variables[i]] = 0;
+             var d = 0;
+             for(var i=0;i<variables.length;i++) {
+                  for(var j=0;j<allData.length;j++) {
+
+                            firstGroupInfo[variables[i]] += +allData[j][variables[i]];
+                            d++;
+
+                  }
+                  firstGroupInfo[variables[i]] =  round(firstGroupInfo[variables[i]]/d,0);
+                 d=0;
+             }
+         }
+
+
+          allData = data;
+
+         if(secondGroupType=='group') {
+          for(i=0;i<allData.length;i++) {
+              if(allData[i]['Name']==secondGroup)
+                secondGroupInfo = allData[i];
+          }
+         } else if(secondGroupType=='country') {
+
+             secondGroupInfo = allData[1];
+             for(i=0;i<variables.length;i++)
+                 secondGroupInfo[variables[i]] = 0;
+             var c = 0;
+             for(i=0;i<variables.length;i++) {
+                  for(j=0;j<allData.length;j++) {
+                        if(allData[j]['Country']==secondGroup) {
+                            secondGroupInfo[variables[i]] += +allData[j][variables[i]];
+                            c++;
+                        }
+                  }
+                  secondGroupInfo[variables[i]] =  round(secondGroupInfo[variables[i]]/c,0);
+                 c=0;
+             }
+         }
+
+         else if(secondGroupType=='partner') {
+
+             secondGroupInfo = allData[1];
+             for(i=0;i<variables.length;i++)
+                 secondGroupInfo[variables[i]] = 0;
+             var c = 0;
+             for(i=0;i<variables.length;i++) {
+                  for(j=0;j<allData.length;j++) {
+                        if(allData[j]['Partner']==secondGroup) {
+                            secondGroupInfo[variables[i]] += +allData[j][variables[i]];
+                            c++;
+                        }
+                  }
+                  secondGroupInfo[variables[i]] =  round(secondGroupInfo[variables[i]]/c,0);
+                 c=0;
+             }
+         }
+         else if(secondGroupType=='total') {
+
+             secondGroupInfo = allData[1];
+             for(i=0;i<variables.length;i++)
+                 secondGroupInfo[variables[i]] = 0;
+             var c = 0;
+             for(i=0;i<variables.length;i++) {
+                  for(j=0;j<allData.length;j++) {
+
+                            secondGroupInfo[variables[i]] += +allData[j][variables[i]];
+                            c++;
+
+                  }
+                  secondGroupInfo[variables[i]] =  round(secondGroupInfo[variables[i]]/c,0);
+                 c=0;
+             }
+         }
+
+
+         var frontLabel, backLabel;
+
+
+
+     } //mappingDataFG()
+
+    function initChartFG() {
+        var group = drawFG.group()
+         var group2=[];
+        var j=0;
+        var textData=[];
+
+
+        var frontLabelCircle = drawFG.circle(25).center(330,820).fill({ color: '#f98e3b', opacity: 1 })
+        frontLabel = drawFG.text(firstGroup).move(360,810).font({family:   'Source Sans Pro', size:16, fill: '#000',anchor:'start'}).style('font-weight','bold').style('text-transform','uppercase')
+        var backLabelCircle = drawFG.circle(25).center(330,870).fill({ color: '#e6e6e6', opacity: 1 })
+        backLabel = drawFG.text(secondGroup).move(360,860).font({family:   'Source Sans Pro', size:16, fill: '#000',anchor:'start'}).style('font-weight','bold').style('text-transform','uppercase')
+
+
+
+
+        var labelCircle = drawFG.circle(450).cx(438).cy(443).stroke({ width: 0, color:'#666' }).attr('stroke-dasharray','5,5');
+         for(var i=0;i<11;i++) {
+
+            if(firstGroupInfo[variables[i]]==null) firstGroupInfo[variables[i]] = 0;
+            if(secondGroupInfo[variables[i]]==null) secondGroupInfo[variables[i]] = 0;
+
+
+        circleFront[i].animate(500+i*100, '>').radius((firstGroupInfo[variables[i]] >= secondGroupInfo[variables[i]] ? 150 : 150/(secondGroupInfo[variables[i]]/firstGroupInfo[variables[i]])));
+
+    circleBack[i].animate(250+i*50, '<').radius((firstGroupInfo[variables[i]] <= secondGroupInfo[variables[i]] ? 150 : 150/(firstGroupInfo[variables[i]]/secondGroupInfo[variables[i]])));
+         }
+
+         for (var i=0;i<11;i++) {
+
+      line[i] = drawFG.line(438,463,paths[j],paths[j+1]).stroke({ width: 1, color:'#666' }).attr('stroke-dasharray','5,5');
+             line2[i] = drawFG.line(438,463,paths2[j],paths2[j+1]).stroke({ width: 0, color:'#666' }).attr('stroke-dasharray','5,5');
+
+     group.add(line[i])
+
+
+            textData[i] = drawFG.text(function(add) {
+  add.tspan(variables[i]).newLine()
+  add.tspan(firstGroupInfo[variables[i]]).fill('#F98E3B').style('font-weight','bold').newLine()
+  add.tspan(secondGroupInfo[variables[i]]).style('font-weight','bold').fill('#999').newLine()
+}).x(labelCircle.toPath().pointAt(i*128+25).x).y(labelCircle.toPath().pointAt(i*128+25).y).font({family:   'Source Sans Pro', size:18, fill: '#000',anchor:'middle'}).style('font-weight','normal').style('cursor:default').addClass('textlabel').front();
+             (function(index) {
+             textData[index].mouseover(function() {
+
+
+             var elements = $('.textlabel').each(function(index) {
+  this.instance.opacity(0.5)
+
+  front[index].opacity(0.5)
+  back[index].opacity(0.5)
+
+})
+
+             this.opacity(1)
+              front[index].opacity(1)
+             back[index].opacity(1)
+
+             })
+
+              textData[index].mouseout(function() {
+
+
+             var elements = $('.textlabel').each(function(index) {
+  this.instance.opacity(1)
+  front[index].opacity(1)
+  back[index].opacity(1)
+})
+
+
+             })
+
+              })(i);
+
+
+
+
+
+             j++; j++;
+
+
+
+    }
+
+       group.clipWith(circleLine)
+
+    } //initChartFG()
+
+    function clearSelectedNodes() {
+    $('.data-point').each(function(index) {
+    	this.instance.remember('selected', false);
+    });
+    	numSelectedNodes = 0;
+	change = 'selected';
+	updateChart();
+    }
+
+    function updateChartFG()
+    {
+        $.getJSON("data/data.json", mappingDataFG);
+
+        setTimeout(function() {
+
+            backLabel.text(secondGroup)
+              frontLabel.text(firstGroup)
+
+
+
+
+
+              for(var i=0;i<11;i++) {
+        //circleFront[i].radius(0);
+    //circleBack[i].radius(0);
+         }
+
+
+              for(var i=0;i<11;i++) {
+
+            if(firstGroupInfo[variables[i]]==null || firstGroupInfo[variables[i]]=="") firstGroupInfo[variables[i]] = 0;
+            if(secondGroupInfo[variables[i]]==null || secondGroupInfo[variables[i]]=="") secondGroupInfo[variables[i]] = 0;
+
+                  if(firstGroupInfo[variables[i]] == 0 && secondGroupInfo[variables[i]] == 0) {
+
+                   circleFront[i].stop().animate(500+i*100, '>').radius(0);
+                      circleBack[i].stop().animate(500+i*100, '>').radius(0);
+                  } else {
+
+
+        circleFront[i].stop().animate(500+i*100, '>').radius((firstGroupInfo[variables[i]] >= secondGroupInfo[variables[i]] ? 150 : 150/(secondGroupInfo[variables[i]]/firstGroupInfo[variables[i]])));
+
+    circleBack[i].stop().animate(250+i*50, '<').radius((firstGroupInfo[variables[i]] <= secondGroupInfo[variables[i]] ? 150 : 150/(firstGroupInfo[variables[i]]/secondGroupInfo[variables[i]])));
+                  }
+         }
+
+             var elements = $('.textlabel').each(function(index) {
+                   $(this).find('tspan').eq(0).html(variables[index]);
+                    $(this).find('tspan').eq(1).html((firstGroupInfo[variables[index]]==0?'No Data':firstGroupInfo[variables[index]]));
+                     $(this).find('tspan').eq(2).html((secondGroupInfo[variables[index]]==0?'No Data':secondGroupInfo[variables[index]]));
+               });
+
+
+
+
+        },100);
+    }
+
+
+
+    </script>
+</body>
